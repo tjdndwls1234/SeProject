@@ -64,7 +64,7 @@ const Header = () => {
                             flexGrow: 1,
                         }} >
                         <Typography
-                            variant="h4"
+                            variant="h5"
                             component={Link}
                             to="/"
                             sx={{
