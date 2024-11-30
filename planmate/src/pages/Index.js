@@ -89,20 +89,22 @@ const Index = () => {
                 fontWeight: "bold",
                 textDecoration: "none",  // 링크 스타일 제거
                 color: "inherit",        // 기본 색상 유지
-                '&:hover': {
+                  '&:hover': {
                 },
               }}>
               2024년 1학기 강의목록
             </Typography>
 
             <TextField
-              fullWidth
               variant="outlined"
               size="small"
               label="검색어 입력"
               name="id"
               sx={{
+                display: 'flex',
+                width: 382,
                 mt: 2,
+                ml: 0,
                 mb: 2,
               }}
             />
@@ -194,42 +196,76 @@ const Index = () => {
               <FormControlLabel control={<Checkbox />} label="수강 금지 과목 제외" />
               <FormControlLabel control={<Checkbox defaultChecked />} label="시간 겹치는 과목 제외" />
             </FormGroup>
-
-            <TableContainer component={Paper}>
-              <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                <TableHead>
-                  <TableRow sx={{ bgcolor: "background.default" }}>
-                    <TableCell sx={{ color: "#ffffff" }}>과목명</TableCell>
-                    <TableCell align="right" sx={{ color: "#ffffff" }}>분반</TableCell>
-                    <TableCell align="right" sx={{ color: "#ffffff" }}>학과</TableCell>
-                    <TableCell align="right" sx={{ color: "#ffffff" }}>학년</TableCell>
-                    <TableCell align="right" sx={{ color: "#ffffff" }}>학점</TableCell>
-                    <TableCell align="right" sx={{ color: "#ffffff" }}>교과구분</TableCell>
-                    <TableCell align="right" sx={{ color: "#ffffff" }}>교수명</TableCell>
-                    <TableCell align="right" sx={{ color: "#ffffff" }}>강의시간</TableCell>
-                    <TableCell align="right" sx={{ color: "#ffffff" }}>정원</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {rows.map((row) => (
-                    <TableRow
-                      key={row[0]}
-                      sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                    >
-                      <TableCell align="right">{row[0]}</TableCell>
-                      <TableCell align="right">{row[1]}</TableCell>
-                      <TableCell align="right">{row[2]}</TableCell>
-                      <TableCell align="right">{row[3]}</TableCell>
-                      <TableCell align="right">{row[4]}</TableCell>
-                      <TableCell align="right">{row[5]}</TableCell>
-                      <TableCell align="right">{row[6]}</TableCell>
-                      <TableCell align="right">{row[7]}</TableCell>
-                      <TableCell align="right">{row[8]}</TableCell>
+            
+            <Box
+              sx={{
+                width: '100vw',
+                display: 'flex',
+                flexDirection: 'row',
+                mb: 3
+              }}
+            >
+              <TableContainer component={Paper} sx={{ width: 750 }}>
+                <Table aria-label="simple table">
+                  <TableHead>
+                    <TableRow sx={{ bgcolor: "background.default" }}>
+                      <TableCell sx={{ color: "#ffffff" }}>과목명</TableCell>
+                      <TableCell align="right" sx={{ color: "#ffffff" }}>분반</TableCell>
+                      <TableCell align="right" sx={{ color: "#ffffff" }}>학과</TableCell>
+                      <TableCell align="right" sx={{ color: "#ffffff" }}>학년</TableCell>
+                      <TableCell align="right" sx={{ color: "#ffffff" }}>학점</TableCell>
+                      <TableCell align="right" sx={{ color: "#ffffff" }}>교과구분</TableCell>
+                      <TableCell align="right" sx={{ color: "#ffffff" }}>교수명</TableCell>
+                      <TableCell align="right" sx={{ color: "#ffffff" }}>강의시간</TableCell>
+                      <TableCell align="right" sx={{ color: "#ffffff" }}>정원</TableCell>
                     </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
+                  </TableHead>
+                  <TableBody>
+                    {rows.map((row) => (
+                      <TableRow
+                        key={row[0]}
+                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                      >
+                        <TableCell align="right">{row[0]}</TableCell>
+                        <TableCell align="right">{row[1]}</TableCell>
+                        <TableCell align="right">{row[2]}</TableCell>
+                        <TableCell align="right">{row[3]}</TableCell>
+                        <TableCell align="right">{row[4]}</TableCell>
+                        <TableCell align="right">{row[5]}</TableCell>
+                        <TableCell align="right">{row[6]}</TableCell>
+                        <TableCell align="right">{row[7]}</TableCell>
+                        <TableCell align="right">{row[8]}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+
+              <TableContainer component={Paper} sx={{ width: 400, ml: 3 }}>
+                <Table aria-label="simple table">
+                  <TableHead>
+                    <TableRow sx={{ bgcolor: "background.default" }}>
+                      <TableCell sx={{ color: "#ffffff" }}>시간/요일</TableCell>
+                      <TableCell align="right" sx={{ color: "#ffffff" }}>월</TableCell>
+                      <TableCell align="right" sx={{ color: "#ffffff" }}>화</TableCell>
+                      <TableCell align="right" sx={{ color: "#ffffff" }}>수</TableCell>
+                      <TableCell align="right" sx={{ color: "#ffffff" }}>목</TableCell>
+                      <TableCell align="right" sx={{ color: "#ffffff" }}>금</TableCell>
+                      <TableCell align="right" sx={{ color: "#ffffff" }}>토</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {rows.map((row) => (
+                      <TableRow
+                        key={row[0]}
+                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                      >
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </Box>
           </Box>
         </Toolbar>
     </ThemeProvider>
