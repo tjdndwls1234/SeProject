@@ -24,7 +24,8 @@ public class MainPageController {
     @RequestMapping(value = "/CourseSearch")
     public ResponseEntity<List<CourseDto>> CourseSearch(HttpServletRequest request) {
         SearchCriteria criteria = new SearchCriteria();
-        criteria.setStudentCode(request.getParameter("studentCode"));
+        criteria.setStudentCode("111111");
+        //criteria.setStudentCode(request.getParameter("studentCode")); // 추후 회원가입과 결합시 교체
         criteria.setCourseDepartmentName(request.getParameter("courseDepartmentName"));
         criteria.setStudentDepartmentName(request.getParameter("studentDepartmentName"));
         criteria.setGrade(request.getParameter("grade"));;
