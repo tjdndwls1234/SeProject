@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.PlanMate.mapper.CourseSearchMapper">
+
+
+    <select id="CourseSearch" resultType="com.example.PlanMate.dto.CourseSearchDto">
+        select COURSE_CODE, COURSE_NAME, DEPARTMENT_CODE, GRADE, CREDIT, PROFESSOR_CODE, TOTAL_CAPACITY, COURSE_START_TIME, COURSE_END_TIME, COURSE_DAY
+               from COURSE, COURSE_PROPERTY, COURSE_SCHEDULE where COURSE_DEPARTMENT_CODE = #{courseDepartmentCode}
+        <if test='isCourseEngineeringCertified.equals("Y")'>
+            AND COURSE_ENGINEERING_CERTIFIED = 'Y'
+        </if>
+    </select>
+</mapper>
