@@ -9,6 +9,7 @@ import {
     Autocomplete
 } from "@mui/material";
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import theme from "theme";
 
 const departments = [
@@ -29,6 +30,7 @@ const RegisterTextField = ({ ...props }) => {
     )
 }
 const Content = () => {
+    const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
         id: "",
@@ -68,12 +70,16 @@ const Content = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (validate()) {
-            alert("가입이 완료되었습니다!");
-            // API 호출 등을 여기에 추가할 수 있음
-            console.log(formData);
+            fetch("/api/signup")
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok");
+                    }
+                    alert("가입이 완료되었습니다!");
+                    navigate('/login')
+                })
         }
     };
-
 
     return (
         <ThemeProvider theme={theme}>
