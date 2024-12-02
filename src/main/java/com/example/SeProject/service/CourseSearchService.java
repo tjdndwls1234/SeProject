@@ -27,6 +27,7 @@ public class CourseSearchService {
 
     public List<CourseDto> CourseSearch(SearchCriteria criteria){
         List<CourseDto> courseList = courseSearchMapper.CourseSearch(criteria);
+        if (courseList.isEmpty()) return courseList;
         ArrayList<Integer> deleteIndex = new ArrayList<>();
         //재수강 가능 과목 필터링
         if (Objects.equals(criteria.getIsRetakeableCourse(), "Y")){
@@ -46,13 +47,24 @@ public class CourseSearchService {
                 deleteIndex.clear();
             }
         }
+        String[] s_start, s_end, c_start, c_end;
         //시간표 겹치는 과목 필터링
         if (Objects.equals(criteria.getIsScheduleConflict(), "Y")){
             List<StudentScheduleDto> studentScheduleList = studentScheduleMapper.timetableSearch(criteria.getStudentCode());
             if (!studentScheduleList.isEmpty()){
                 for (int i = 0; i != studentScheduleList.size(); i++){
                     for (int j = 0; j != courseList.size(); j++){
-                        if (studentScheduleList.get(i).)
+                        if (Objects.equals(studentScheduleList.get(i).getCourseDay(), courseList.get(j).getCourseDay())){
+                            s_start = studentScheduleList.get(i).getCourseStartTime().split(":");
+                            s_end = studentScheduleList.get(i).getCourseEndTime().split(":");
+                            c_start = courseList.get(j).getCourseStartTime().split(":");
+                            c_end = courseList.get(j).getCourseEndTime().split(":");
+                            if((Integer.parseInt(c_start[0]) > Integer.parseInt(s_end[0]))
+                                    && (Integer.parseInt(c_end[0]) < Integer.parseInt(s_start[0]))){
+                                deleteIndex.add(i);
+                                break;
+                            }
+                        }
                     }
                 }
             }
