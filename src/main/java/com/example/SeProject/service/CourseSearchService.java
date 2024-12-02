@@ -48,7 +48,7 @@ public class CourseSearchService {
         }
         //시간표 겹치는 과목 필터링
         if (Objects.equals(criteria.getIsScheduleConflict(), "Y")){
-            List<StudentScheduleDto> studentScheduleList = studentScheduleMapper.studentScheduleListSearch(criteria);
+            List<StudentScheduleDto> studentScheduleList = studentScheduleMapper.timetableSearch(criteria.getStudentCode());
             if (!studentScheduleList.isEmpty()){
                 for (int i = 0; i != studentScheduleList.size(); i++){
                     for (int j = 0; j != courseList.size(); j++){

@@ -2,7 +2,9 @@ package com.example.SeProject.controller;
 
 import com.example.SeProject.domain.SearchCriteria;
 import com.example.SeProject.dto.CourseDto;
+import com.example.SeProject.dto.StudentScheduleDto;
 import com.example.SeProject.service.CourseSearchService;
+import com.example.SeProject.service.TimetableService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,10 +17,12 @@ import java.util.List;
 @RequestMapping("/MainPage")
 public class MainPageController {
     private final CourseSearchService courseSearchService;
+    private final TimetableService timetableService;
 
     @Autowired
-    public MainPageController(CourseSearchService courseSearchService){
+    public MainPageController(CourseSearchService courseSearchService, TimetableService timetableService){
         this.courseSearchService = courseSearchService;
+        this.timetableService = timetableService;
     }
 
     @RequestMapping(value = "/CourseSearch")
@@ -36,5 +40,12 @@ public class MainPageController {
         criteria.setIsScheduleConflict(request.getParameter("isScheduleConflict"));
 
         return ResponseEntity.ok().body(courseSearchService.CourseSearch(criteria));
+    }
+
+    @RequestMapping(value = "/TimetableUpdate")
+    public ResponseEntity<List<StudentScheduleDto>> TimetableSearch(HttpServletRequest request) {
+        String studentCode = request.getParameter("studentCode");
+
+        return ResponseEntity.ok().body(timetableService.timetableSearch(studentCode));
     }
 }

@@ -11,13 +11,14 @@
         <result property="courseEndTime" column="COURSE_END_TIME"/>
         <result property="courseDay" column="COURSE_DAY"/>
     </resultMap>
-    <select id="timetableSearch" resultType="StudentScheduleDto">
-        SELECT c.COURSE_CODE AS courseCode, c_s.COURSE_START_TIME AS courseStartTime,
-               c_s.COURSE_END_TIME AS courseEndTime, c_s.COURSE_DAY AS courseDay
+    <select id="timetableSearch" parameterType="String"
+            resultType="com.example.SeProject.dto.StudentScheduleDto" resultMap="StudentScheduleDto">
+        SELECT c.COURSE_CODE AS COURSE_CODE, c_s.COURSE_START_TIME AS COURSE_START_TIME,
+               c_s.COURSE_END_TIME AS COURSE_END_TIME, c_s.COURSE_DAY AS COURSE_DAY
         FROM STUDENT_SCHEDULE s_s
         JOIN COURSE c on s_s.COURSE_CODE = c.COURSE_CODE
         JOIN COURSE_SCHEDULE c_s on c.COURSE_CODE = c_s.COURSE_CODE
         JOIN PROCESSOR p on c.PROFESSOR_CODE = p.PROFESSOR_CODE
-        WHERE s_s.STUDENT_CODE = 'studentCode'
+        WHERE s_s.STUDENT_CODE = #{studentCode}
     </select>
 </mapper>
