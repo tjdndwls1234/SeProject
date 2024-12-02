@@ -8,6 +8,7 @@ import com.example.SeProject.service.TimetableService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,13 +27,8 @@ public class MainPageController {
         this.courseSearchService = courseSearchService;
         this.timetableService = timetableService;
     }
-    //회원페이지와 합칠시 삭제
-    @RequestMapping("/")
-    public String redirectToMainPage() {
-        return "mainpage";  // 바로 mainpage.html을 반환
-    }
 
-    @GetMapping(value = "/CourseSearch")
+    @GetMapping("/CourseSearch")
     public ResponseEntity<List<CourseDto>> CourseSearch(@RequestParam String studentCode,
                                                         @RequestParam(required = false) String courseDepartmentName,
                                                         @RequestParam(required = false) String grade,
