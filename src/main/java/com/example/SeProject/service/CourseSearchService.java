@@ -36,7 +36,7 @@ public class CourseSearchService {
                     for (int j = 0; j != courseList.size(); j++) {
                         if (Objects.equals(retakeableCourseList.get(i), courseList.get(i).getCourseCode())) {
                             deleteIndex.add(i);
-                            continue;
+                            break;
                         }
                     }
                 }
@@ -60,7 +60,6 @@ public class CourseSearchService {
             }
             deleteIndex.clear();
         }
-
         return courseList;
     }
 }
