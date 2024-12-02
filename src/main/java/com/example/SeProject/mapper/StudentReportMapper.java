@@ -7,6 +7,5 @@ import java.util.List;
 
 @Mapper
 public interface StudentReportMapper {
-
     public List<String> retakeableCourseListSearch(SearchCriteria criteria);
 }

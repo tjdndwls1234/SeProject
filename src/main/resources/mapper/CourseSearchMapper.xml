@@ -17,32 +17,38 @@
         <result property="classroom" column="CLASSROOM"/>
     </resultMap>
 
-    <select id="CourseSearch" resultType="com.example.SeProject.dto.CourseSearchDto">
-        SELECT c.COURSE_CODE AS courseCode, c.COURSE_NAME AS courseName, c_s.CLASS_DEVISION AS classDevision,
-               d.DEPARTMENT_NAME AS departmentName, c_p.GRADE AS grade, c.CREDIT AS credit,
-               c_p.COURSE_DEVISION AS courseDevision, p.PROFESSOR_NAME AS professorName, c_s.COURSE_DAY AS courseDay,
-               c_s.COURSE_START_TIME AS courseStartTime, c_s.COURSE_END_TIME AS courseEndTime, c_s.CLASSROOM AS CLASSROOM,
+    <select id="CourseSearch" parameterType="com.example.SeProject.domain.SearchCriteria"
+            resultType="com.example.SeProject.dto.CourseDto" resultMap="CourseDto">
+        SELECT c.COURSE_CODE AS COURSE_CODE, c.COURSE_NAME AS COURSE_NAME, c_s.CLASS_DEVISION AS CLASS_DEVISION,
+               d.DEPARTMENT_NAME AS DEPARTMENT_NAME, c_p.GRADE AS GRADE, c.CREDIT AS CREDIT,
+               c_p.COURSE_DEVISION AS COURSE_DEVISION, p.PROFESSOR_NAME AS PROFESSOR_NAME,
+               c_s.COURSE_DAY AS COURSE_DAY, c_s.COURSE_START_TIME AS COURSE_START_TIME,
+               c_s.COURSE_END_TIME AS COURSE_END_TIME, c_s.CLASSROOM AS CLASSROOM,
                c.TOTAL_CAPACITY AS TOTAL_CAPACITY
         FROM COURSE c
         JOIN COURSE_PROPERTY c_p ON c.COURSE_CODE = c_p.COURSE_CODE
         JOIN COURSE_SCHEDULE c_s ON c.COURSE_CODE = c_s.COURSE_CODE
         JOIN DEPARTMENT d ON c.DEPARTMENT_CODE = d.DEPARTMENT_CODE
         JOIN PROFESSOR p ON c.PROFESSOR_CODE = p.PROFESSOR_CODE
-        WHERE
+        JOIN COURSE_PROHIBIT c_ph ON c.COURSE_CODE = c_ph.COURSE_PROHIBIT
+        WHERE TRUE
             <if test="courseDepartmentName != NULL">
-                AND d.DEPARTMENT = #{departmentName}
+                AND DEPARTMENT = #{departmentName}
             </if>
             <if test="grade != NULL">
-                AND c_p.GRADE = #{grade}
+                AND GRADE = #{grade}
             </if>
             <if test="day != NULL">
-                AND c_s.COURSE_DAY = #{courseDay}
+                AND COURSE_DAY = #{courseDay}
             </if>
             <if test="courseStartTime != NULL">
-                AND c_s.COURSE_START_TIME = #{courseStartTime}
+                AND COURSE_START_TIME = #{courseStartTime}
             </if>
             <if test="isCourseEngineeringCertified == 'Y'">
-                AND c_p.COURSE_ENGINEERING_CERTIFIED = "Y"
+                AND COURSE_ENGINEERING_CERTIFIED = 'Y'
+            </if>
+            <if test="isCourseProhibit == 'Y'">
+                AND DEPARTMENT_CODE != #{studentDepartmentCode}
             </if>
     </select>
 </mapper>

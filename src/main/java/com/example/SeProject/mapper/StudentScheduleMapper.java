@@ -9,4 +9,5 @@ import java.util.List;
 @Mapper
 public interface StudentScheduleMapper {
     public List<StudentScheduleDto> studentScheduleListSearch(SearchCriteria criteria);
+    public List<StudentScheduleDto> timetableSearch(String studentCode);
 }

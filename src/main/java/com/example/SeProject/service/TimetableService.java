@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class timetableService {
+public class TimetableService {
     public StudentScheduleMapper studentScheduleMapper;
 
     @Autowired
-    public timetableService(StudentScheduleMapper studentScheduleMapper) {
+    public TimetableService(StudentScheduleMapper studentScheduleMapper) {
         this.studentScheduleMapper = studentScheduleMapper;
     }
 
