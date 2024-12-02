@@ -52,6 +52,7 @@ public class CourseSearchService {
             if (!studentScheduleList.isEmpty()){
                 for (int i = 0; i != studentScheduleList.size(); i++){
                     for (int j = 0; j != courseList.size(); j++){
+                        if (studentScheduleList.get(i).)
                     }
                 }
             }
