@@ -8,7 +8,9 @@ import com.example.SeProject.service.TimetableService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -24,24 +26,44 @@ public class MainPageController {
         this.courseSearchService = courseSearchService;
         this.timetableService = timetableService;
     }
-
-    @RequestMapping(value = "/CourseSearch")
-    public ResponseEntity<List<CourseDto>> CourseSearch(HttpServletRequest request) {
-        SearchCriteria criteria = new SearchCriteria();
-        criteria.setStudentCode(request.getParameter("studentCode"));
-        criteria.setCourseDepartmentName(request.getParameter("courseDepartmentName"));
-        criteria.setStudentDepartmentName(request.getParameter("studentDepartmentName"));
-        criteria.setGrade(request.getParameter("grade"));;
-        criteria.setCourseStartTime(request.getParameter("courseStartTime"));
-        criteria.setCourseDay(request.getParameter("courseDay"));
-        criteria.setIsCourseEngineeringCertified(request.getParameter("isCourseEngineeringCertified"));
-        criteria.setIsCourseProhibit(request.getParameter("isCourseProhibit"));
-        criteria.setIsRetakeableCourse(request.getParameter("isRetakeableCourse"));
-        criteria.setIsScheduleConflict(request.getParameter("isScheduleConflict"));
-
-        return ResponseEntity.ok().body(courseSearchService.CourseSearch(criteria));
+    //회원페이지와 합칠시 삭제
+    @RequestMapping("/")
+    public String redirectToMainPage() {
+        return "mainpage";  // 바로 mainpage.html을 반환
     }
 
+    @GetMapping(value = "/CourseSearch")
+    public ResponseEntity<List<CourseDto>> CourseSearch(@RequestParam String studentCode,
+                                                        @RequestParam(required = false) String courseDepartmentName,
+                                                        @RequestParam(required = false) String grade,
+                                                        @RequestParam(required = false) String courseStartTime,
+                                                        @RequestParam(required = false) String courseDay,
+                                                        @RequestParam(required = false) String studentDepartmentName,
+                                                        @RequestParam(required = false) String isCourseEngineeringCertified,
+                                                        @RequestParam(required = false) String isCourseProhibit,
+                                                        @RequestParam(required = false) String isRetakeableCourse,
+                                                        @RequestParam(required = false) String isScheduleConflict) {
+
+        // SearchCriteria 객체 초기화
+        SearchCriteria criteria = new SearchCriteria();
+
+        // 필수 파라미터들 설정
+        criteria.setStudentCode(studentCode);
+        criteria.setCourseDepartmentName(courseDepartmentName);
+        criteria.setGrade(grade);
+        criteria.setCourseStartTime(courseStartTime);
+        criteria.setCourseDay(courseDay);
+        criteria.setStudentDepartmentName(studentDepartmentName);
+
+        // Y/N 값 처리: 선택되었으면 Y, 선택되지 않았으면 N
+        criteria.setIsCourseEngineeringCertified(isCourseEngineeringCertified != null ? isCourseEngineeringCertified : "N");
+        criteria.setIsCourseProhibit(isCourseProhibit != null ? isCourseProhibit : "N");
+        criteria.setIsRetakeableCourse(isRetakeableCourse != null ? isRetakeableCourse : "N");
+        criteria.setIsScheduleConflict(isScheduleConflict != null ? isScheduleConflict : "N");
+
+        // 서비스 호출 및 결과 반환
+        return ResponseEntity.ok().body(courseSearchService.CourseSearch(criteria));
+    }
     @RequestMapping(value = "/TimetableUpdate")
     public ResponseEntity<List<StudentScheduleDto>> TimetableSearch(HttpServletRequest request) {
         String studentCode = request.getParameter("studentCode");

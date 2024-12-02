@@ -32,23 +32,23 @@
         JOIN PROFESSOR p ON c.PROFESSOR_CODE = p.PROFESSOR_CODE
         JOIN COURSE_PROHIBIT c_ph ON c.COURSE_CODE = c_ph.COURSE_PROHIBIT
         WHERE TRUE
-            <if test="courseDepartmentName != NULL">
-                AND DEPARTMENT = #{departmentName}
-            </if>
-            <if test="grade != NULL">
-                AND GRADE = #{grade}
-            </if>
-            <if test="day != NULL">
-                AND COURSE_DAY = #{courseDay}
-            </if>
-            <if test="courseStartTime != NULL">
-                AND COURSE_START_TIME = #{courseStartTime}
-            </if>
-            <if test="isCourseEngineeringCertified == 'Y'">
-                AND COURSE_ENGINEERING_CERTIFIED = 'Y'
-            </if>
-            <if test="isCourseProhibit == 'Y'">
-                AND DEPARTMENT_CODE != #{studentDepartmentCode}
-            </if>
+        <if test="courseDepartmentName != null">
+            AND d.DEPARTMENT_NAME = #{courseDepartmentName}
+        </if>
+        <if test="grade != null">
+            AND c_p.GRADE = #{grade}
+        </if>
+        <if test="courseDay != null">
+            AND c_s.COURSE_DAY = #{courseDay}
+        </if>
+        <if test="courseStartTime != null">
+            AND c_s.COURSE_START_TIME = #{courseStartTime}
+        </if>
+        <if test="isCourseEngineeringCertified == 'Y'">
+            AND c.COURSE_ENGINEERING_CERTIFIED = 'Y'
+        </if>
+        <if test="isCourseProhibit == 'Y'">
+            AND c.DEPARTMENT_CODE != #{studentDepartmentCode}
+        </if>
     </select>
 </mapper>
