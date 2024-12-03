@@ -20,12 +20,12 @@ public class StudentService {
 
         //초기 학번 001
         if (maxStudentCode == null) {
-            return "001";
+            return "000001";
         }
 
-        //int nextStudentCode = Integer.parseInt(maxStudentCode) + 1;
+        int nextStudentCode = Integer.parseInt(maxStudentCode) + 1;
 
-        return String.format("%03d", 03L);
+        return String.format("%06d", nextStudentCode);
     }
 
     //회원가입 처리
