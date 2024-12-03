@@ -13,12 +13,14 @@
     </resultMap>
     <select id="timetableSearch" parameterType="String"
             resultType="com.example.SeProject.dto.StudentScheduleDto" resultMap="StudentScheduleDto">
-        SELECT c.COURSE_CODE AS COURSE_CODE, c_s.COURSE_START_TIME AS COURSE_START_TIME,
-               c_s.COURSE_END_TIME AS COURSE_END_TIME, c_s.COURSE_DAY AS COURSE_DAY
+        SELECT s_s.COURSE_CODE AS COURSE_CODE,
+               c_s.COURSE_START_TIME AS COURSE_START_TIME,
+               c_s.COURSE_END_TIME AS COURSE_END_TIME,
+               c_s.COURSE_DAY AS COURSE_DAY
         FROM STUDENT_SCHEDULE s_s
         JOIN COURSE c on s_s.COURSE_CODE = c.COURSE_CODE
-        JOIN COURSE_SCHEDULE c_s on c.COURSE_CODE = c_s.COURSE_CODE
-        JOIN PROCESSOR p on c.PROFESSOR_CODE = p.PROFESSOR_CODE
+        JOIN COURSE_SCHEDULE c_s on s_s.COURSE_CODE = c_s.COURSE_CODE
+        JOIN PROFESSOR p on c.PROFESSOR_CODE = p.PROFESSOR_CODE
         WHERE s_s.STUDENT_CODE = #{studentCode}
     </select>
 </mapper>

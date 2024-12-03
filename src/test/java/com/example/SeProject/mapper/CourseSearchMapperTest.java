@@ -20,10 +20,10 @@ public class CourseSearchMapperTest {
     public void testCourseSearch() {
         // SearchCriteria 객체 생성 및 필터 조건 설정
         SearchCriteria criteria = new SearchCriteria();
-        criteria.setCourseDepartmentName("Computer Science");  // 예시: 컴퓨터 과학 학과
-        criteria.setGrade("2");  // 예시: 2학년
-        criteria.setCourseDay("Monday");  // 예시: 월요일
-        criteria.setCourseStartTime("09:00");  // 예시: 09:00
+        criteria.setCourseDepartmentName("컴퓨터과학부");  // 예시: 컴퓨터 과학 학과
+        //criteria.setGrade("3");  // 예시: 2학년
+        //criteria.setCourseDay("화");  // 예시: 월요일
+        //criteria.setCourseStartTime("10:00");  // 예시: 09:00
 
         // CourseSearchMapper 호출하여 과목 검색
         List<CourseDto> courses = courseSearchMapper.CourseSearch(criteria);
