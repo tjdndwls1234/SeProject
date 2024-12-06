@@ -10,7 +10,6 @@ import com.example.SeProject.mapper.StudentScheduleMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -22,9 +21,11 @@ public class CourseSearchService {
     public StudentScheduleMapper studentScheduleMapper;
 
     @Autowired
-    public CourseSearchService(CourseSearchMapper courseSearchMapper, StudentReportMapper studentReportMapper){
-        this.courseSearchMapper = courseSearchMapper;
+    public CourseSearchService(CourseSearchMapper courseSearchMapper, StudentReportMapper studentReportMapper,
+                               StudentScheduleMapper studentScheduleMapper){
         this.studentReportMapper = studentReportMapper;
+        this.courseSearchMapper = courseSearchMapper;
+        this.studentScheduleMapper = studentScheduleMapper;
     }
 
     public List<CourseDto> searchCourseList(CourseSearchCriteria criteria){
