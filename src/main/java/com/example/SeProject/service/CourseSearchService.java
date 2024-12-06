@@ -1,6 +1,6 @@
 package com.example.SeProject.service;
 
-import com.example.SeProject.domain.SearchCriteria;
+import com.example.SeProject.domain.CourseSearchCriteria;
 import com.example.SeProject.dto.CourseDto;
 import com.example.SeProject.dto.StudentScheduleDto;
 import com.example.SeProject.mapper.CourseSearchMapper;
@@ -25,8 +25,8 @@ public class CourseSearchService {
         this.studentReportMapper = studentReportMapper;
     }
 
-    public List<CourseDto> CourseSearch(SearchCriteria criteria){
-        List<CourseDto> courseList = courseSearchMapper.CourseSearch(criteria);
+    public List<CourseDto> searchCourseList(CourseSearchCriteria criteria){
+        List<CourseDto> courseList = courseSearchMapper.searchCourseList(criteria);
         if (courseList.isEmpty()) return courseList;
         ArrayList<Integer> deleteIndex = new ArrayList<>();
         //재수강 가능 과목 필터링

@@ -17,7 +17,7 @@
         <result property="classroom" column="CLASSROOM"/>
     </resultMap>
 
-    <select id="CourseSearch" parameterType="com.example.SeProject.domain.SearchCriteria"
+    <select id="searchCourseList" parameterType="com.example.SeProject.domain.CourseSearchCriteria"
             resultType="com.example.SeProject.dto.CourseDto" resultMap="CourseDto">
         SELECT c.COURSE_CODE AS COURSE_CODE, c.COURSE_NAME AS COURSE_NAME,
                c_s.CLASS_DEVISION AS CLASS_DEVISION,

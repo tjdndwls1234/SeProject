@@ -1,0 +1,20 @@
+package com.example.SeProject.domain;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class CourseSearchCriteria {
+    //private String courseDepartmentName;
+    private String studentCode;
+    private String courseDepartmentName;
+    private String studentDepartmentName;
+    private String grade;
+    private String courseStartTime;
+    private String courseDay;
+    private String isCourseEngineeringCertified;
+    private String isCourseProhibit;
+    private String isRetakeableCourse;
+    private String isScheduleConflict;
+}

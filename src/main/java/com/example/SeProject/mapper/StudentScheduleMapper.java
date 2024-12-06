@@ -1,6 +1,5 @@
 package com.example.SeProject.mapper;
 
-import com.example.SeProject.domain.SearchCriteria;
 import com.example.SeProject.dto.StudentScheduleDto;
 import org.apache.ibatis.annotations.Mapper;
 
