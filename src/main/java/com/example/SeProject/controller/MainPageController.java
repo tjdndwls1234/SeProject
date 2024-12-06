@@ -26,16 +26,6 @@ public class MainPageController {
         this.timetableService = timetableService;
     }
 
-    //Confirm Login
-    @GetMapping
-    public String accessMainPage(HttpServletRequest request){
-        HttpSession session = request.getSession(false);
-
-        if (session == null || session.getAttribute("studentCode") == null)
-            return "redirect:/login";
-        return "MainPage";
-    }
-
     //Search Course List
     @GetMapping("/CourseSearch")
     public ResponseEntity<List<CourseDto>> searchCourseList(@RequestBody CourseSearchCriteria criteria, HttpServletRequest request) {
@@ -54,7 +44,7 @@ public class MainPageController {
         return ResponseEntity.ok().body(timetableService.updateTimetable(studentCode));
     }
 
-    @PostMapping(value = "/")
+    @PostMapping(value = "/CourseAdd")
     public ResponseEntity<String> addCourseToTimetable(@RequestBody TimetableEntry entry, HttpServletRequest request){
         HttpSession session = request.getSession(false);
         entry.setStudentCode((String)session.getAttribute("StudentCode"));
