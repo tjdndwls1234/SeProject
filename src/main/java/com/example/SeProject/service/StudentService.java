@@ -1,10 +1,12 @@
 package com.example.SeProject.service;
 
-
+import com.example.SeProject.dto.StudentDto;
 import com.example.SeProject.dto.StudentSignUpDto;
 import com.example.SeProject.mapper.StudentMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -17,7 +19,7 @@ public class StudentService {
         //DB에서 가장 큰 학번 조회
         String maxStudentCode = studentMapper.getMaxStudentCode();
 
-        //초기 학번 001
+        //초기 학번 000001
         if (maxStudentCode == null) {
             return "000001";
         }
@@ -44,28 +46,19 @@ public class StudentService {
         return "Sign Up Success";
     }
 
-    //로그인 처리
-    public boolean isLoggedIn(String id, String pw) {
-
-        StudentSignUpDto student = studentMapper.logIn(id,pw);
-
-        //student존재X : ID 존재X or 비번 안맞으면 실패f
-        if (student == null) {
-            return false;
-
-        }
-        //student존재O : 비번 일치하면 t, 실패하면 f
-        return student.getPw().equals(pw);
-
+    //회원조회
+    public List<StudentDto> getAllStudents() {
+        return studentMapper.getAllStudents();
     }
 
-    public String logIn(String id, String pw) {
-        if (isLoggedIn(id,pw)) {
-            return "로그인 성공";       //메시지 처리 어떻게 할 지
+    //회원삭제
+    public String deleteStudent(String id) {
+        int count = studentMapper.deleteStudent(id);
+        //1: 성공, 0: 실패
+        if (count > 0) {
+            return "Delete Success";
         }
-        else {
-            return "입력하신 아이디 또는 비밀번호가 올바르지 않습니다";
-        }
+        return "Delete Fail";
     }
 
 }
