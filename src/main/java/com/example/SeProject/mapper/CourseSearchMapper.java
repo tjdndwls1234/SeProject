@@ -9,4 +9,5 @@ import java.util.List;
 @Mapper
 public interface CourseSearchMapper {
     public List<CourseDto> searchCourseList(CourseSearchCriteria criteria);
+    public List<CourseDto> searchCourse(String courseCode);
 }

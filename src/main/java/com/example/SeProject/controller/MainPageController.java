@@ -1,6 +1,7 @@
 package com.example.SeProject.controller;
 
 import com.example.SeProject.domain.CourseSearchCriteria;
+import com.example.SeProject.domain.TimetableEntry;
 import com.example.SeProject.dto.CourseDto;
 import com.example.SeProject.dto.StudentScheduleDto;
 import com.example.SeProject.service.CourseSearchService;
@@ -46,10 +47,18 @@ public class MainPageController {
     }
 
     //Update Timetable
-    @RequestMapping(value = "/TimetableUpdate")
-    public ResponseEntity<List<StudentScheduleDto>> TimetableSearch(HttpServletRequest request) {
+    @GetMapping(value = "/TimetableUpdate")
+    public ResponseEntity<List<StudentScheduleDto>> updateTimetable(HttpServletRequest request) {
         String studentCode = request.getParameter("studentCode");
 
-        return ResponseEntity.ok().body(timetableService.timetableSearch(studentCode));
+        return ResponseEntity.ok().body(timetableService.updateTimetable(studentCode));
+    }
+
+    @PostMapping(value = "/")
+    public ResponseEntity<String> addCourseToTimetable(@RequestBody TimetableEntry entry, HttpServletRequest request){
+        HttpSession session = request.getSession(false);
+        entry.setStudentCode((String)session.getAttribute("StudentCode"));
+
+        return ResponseEntity.ok().body(timetableService.addCourseToTimetable(entry));
     }
 }
