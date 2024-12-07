@@ -19,4 +19,7 @@ public interface StudentMapper {
     List<StudentDto> getAllStudents();
     //회원삭제(ID)
     int deleteStudent(String id);
+
+    //studentCode로 studentDepartmentCode
+    String getStudentDepartmentCode(String studentCode);
 }

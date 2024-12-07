@@ -55,4 +55,7 @@
         DELETE FROM STUDENT WHERE ID = #{id}
     </delete>
 
+    <select id="getStudentDepartmentCode" parameterType="String" resultType="String">
+        SELECT DEPARTMENT_CODE FROM STUDENT WHERE STUDENT_CODE = #{studentCode}
+    </select>
 </mapper>
