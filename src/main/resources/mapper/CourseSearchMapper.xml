@@ -38,7 +38,7 @@
         JOIN PROFESSOR p ON c.PROFESSOR_CODE = p.PROFESSOR_CODE
         WHERE 1 = 1
         <if test="courseKeyword != null">
-        AND c.DEPARTMENT_NAME LIKE '%' || #{courseKeyword} || '%'
+        AND c.COURSE_NAME LIKE '%' || #{courseKeyword} || '%'
         </if>
         <if test="courseDepartmentName != null">
         AND d.DEPARTMENT_NAME = #{courseDepartmentName}

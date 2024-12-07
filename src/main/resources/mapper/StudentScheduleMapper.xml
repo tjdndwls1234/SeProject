@@ -16,7 +16,7 @@
     <select id="getTimetable" parameterType="String"
             resultType="com.example.SeProject.dto.StudentScheduleDto" resultMap="StudentScheduleDto">
         SELECT c.COURSE_CODE AS COURSE_CODE,
-               s_s.COURSE_NAME AS COURSE_NAME,
+               c.COURSE_NAME AS COURSE_NAME,
                c_s.COURSE_START_TIME AS COURSE_START_TIME,
                c_s.COURSE_END_TIME AS COURSE_END_TIME,
                c_s.COURSE_DAY AS COURSE_DAY,

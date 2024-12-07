@@ -13,8 +13,8 @@
         SELECT c.COURSE_NAME, c_p.COURSE_DEVISION, c.CREDIT, s_r.COURSE_REPORT
         FROM STUDENT_REPORT s_r
         JOIN COURSE c ON c.COURSE_CODE = s_r.COURSE_CODE
-        JOIN COURSE_PROPERTY c_p ON c.COURSE_CODE = s_r.COURSE_CODE
-        WHERE s_r.STUDENT_CODE = {#studentCode}
+        JOIN COURSE_PROPERTY c_p ON c_p.COURSE_CODE = s_r.COURSE_CODE
+        WHERE s_r.STUDENT_CODE = #{studentCode}
     </select>
     <select id="retakeableCourseListSearch" parameterType="String"
             resultType="String">
