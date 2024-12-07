@@ -28,4 +28,8 @@
         JOIN PROFESSOR p on c.PROFESSOR_CODE = p.PROFESSOR_CODE
         WHERE s_s.STUDENT_CODE = #{studentCode}
     </select>
+    <insert id="addCourseToTimetable" parameterType="com.example.SeProject.domain.TimetableEntry">
+        INSERT INTO STUDENT_SCHEDULE (STUDENT_CODE, COURSE_CODE, SCHEDULE_YEAR, SCHEDULE_TERM)
+        VALUES (#{studentCode}, #{courseCode}, '2024', '2')
+    </insert>
 </mapper>
