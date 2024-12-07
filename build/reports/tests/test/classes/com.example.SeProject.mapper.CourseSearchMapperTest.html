@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - CourseSearchMapperTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>CourseSearchMapperTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/com.example.SeProject.mapper.html">com.example.SeProject.mapper</a> &gt; CourseSearchMapperTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">1</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">1</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">22.863s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox failures" id="successRate">
+<div class="percent">0%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Failed tests</a>
+</li>
+<li>
+<a href="#tab1">Tests</a>
+</li>
+<li>
+<a href="#tab2">Standard output</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Failed tests</h2>
+<div class="test">
+<a name="testSearchCourseList()"></a>
+<h3 class="failures">testSearchCourseList()</h3>
+<span class="code">
+<pre>org.mybatis.spring.MyBatisSystemException: 
+### Error querying database.  Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
+### The error may exist in file [C:\Users\minseo\IdeaProjects\SeProject-backend\build\resources\main\mapper\CourseSearchMapper.xml]
+### The error may involve com.example.SeProject.mapper.CourseSearchMapper.searchCourseList
+### The error occurred while executing a query
+### Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
+	at app//org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:99)
+	at app//org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:347)
+	at app/jdk.proxy3/jdk.proxy3.$Proxy68.selectList(Unknown Source)
+	at app//org.mybatis.spring.SqlSessionTemplate.selectList(SqlSessionTemplate.java:194)
+	at app//org.apache.ibatis.binding.MapperMethod.executeForMany(MapperMethod.java:147)
+	at app//org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:80)
+	at app//org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:141)
+	at app//org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86)
+	at app/jdk.proxy3/jdk.proxy3.$Proxy71.searchCourseList(Unknown Source)
+	at app//com.example.SeProject.mapper.CourseSearchMapperTest.testSearchCourseList(CourseSearchMapperTest.java:29)
+	at java.base@17.0.2/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base@17.0.2/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base@17.0.2/java.util.ArrayList.forEach(ArrayList.java:1511)
+Caused by: org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
+### The error may exist in file [C:\Users\minseo\IdeaProjects\SeProject-backend\build\resources\main\mapper\CourseSearchMapper.xml]
+### The error may involve com.example.SeProject.mapper.CourseSearchMapper.searchCourseList
+### The error occurred while executing a query
+### Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
+	at app//org.apache.ibatis.exceptions.ExceptionFactory.wrapException(ExceptionFactory.java:30)
+	at app//org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:156)
+	at app//org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:147)
+	at app//org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:142)
+	at java.base@17.0.2/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base@17.0.2/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base@17.0.2/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base@17.0.2/java.lang.reflect.Method.invoke(Method.java:568)
+	at app//org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:333)
+	... 11 more
+Caused by: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
+	at app//org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:84)
+	at app//org.mybatis.spring.transaction.SpringManagedTransaction.openConnection(SpringManagedTransaction.java:77)
+	at app//org.mybatis.spring.transaction.SpringManagedTransaction.getConnection(SpringManagedTransaction.java:64)
+	at app//org.apache.ibatis.executor.BaseExecutor.getConnection(BaseExecutor.java:348)
+	at app//org.apache.ibatis.executor.SimpleExecutor.prepareStatement(SimpleExecutor.java:89)
+	at app//org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:64)
+	at app//org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:336)
+	at app//org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:158)
+	at app//org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:110)
+	at app//org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:90)
+	at app//org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:154)
+	... 18 more
+Caused by: java.sql.SQLException: ORA-12541: 접속할 수 없습니다. host 10.0.14.50 port 1521에 리스너가 없습니다. (CONNECTION_ID=EGfopgFDQoe1te8R+6Q+yw==)
+https://docs.oracle.com/error-help/db/ora-12541/
+	at oracle.jdbc.driver.T4CConnection.handleLogonNetException(T4CConnection.java:1617)
+	at oracle.jdbc.driver.T4CConnection.logon(T4CConnection.java:1139)
+	at oracle.jdbc.driver.PhysicalConnection.connect(PhysicalConnection.java:1206)
+	at oracle.jdbc.driver.T4CDriverExtension.getConnection(T4CDriverExtension.java:105)
+	at oracle.jdbc.driver.OracleDriver.connect(OracleDriver.java:886)
+	at oracle.jdbc.driver.OracleDriver.connect(OracleDriver.java:693)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:137)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:360)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:202)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:461)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:550)
+	at com.zaxxer.hikari.pool.HikariPool.&lt;init&gt;(HikariPool.java:98)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:111)
+	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:160)
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:118)
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:81)
+	... 28 more
+Caused by: oracle.net.ns.NetException: ORA-12541: 접속할 수 없습니다. host 10.0.14.50 port 1521에 리스너가 없습니다. (CONNECTION_ID=EGfopgFDQoe1te8R+6Q+yw==)
+https://docs.oracle.com/error-help/db/ora-12541/
+	at app//oracle.net.nt.TcpNTAdapter.handleEstablishSocketException(TcpNTAdapter.java:414)
+	at app//oracle.net.nt.TcpNTAdapter.establishSocket(TcpNTAdapter.java:346)
+	at app//oracle.net.nt.TcpNTAdapter.connect(TcpNTAdapter.java:224)
+	at app//oracle.net.nt.ConnOption.connect(ConnOption.java:332)
+	at app//oracle.net.nt.ConnStrategy.executeConnOption(ConnStrategy.java:1222)
+	at app//oracle.net.nt.ConnStrategy.execute(ConnStrategy.java:761)
+	at app//oracle.net.resolver.AddrResolution.resolveAndExecute(AddrResolution.java:711)
+	at app//oracle.net.ns.NSProtocol.establishConnection(NSProtocol.java:959)
+	at app//oracle.net.ns.NSProtocol.connect(NSProtocol.java:328)
+	at app//oracle.jdbc.driver.T4CConnection.connectNetworkSessionProtocol(T4CConnection.java:3419)
+	at app//oracle.jdbc.driver.T4CConnection.logon(T4CConnection.java:1018)
+	... 42 more
+Caused by: java.net.ConnectException: Connection timed out: no further information
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:672)
+	at java.base/sun.nio.ch.SocketChannelImpl.finishTimedConnect(SocketChannelImpl.java:1148)
+	at java.base/sun.nio.ch.SocketChannelImpl.blockingConnect(SocketChannelImpl.java:1183)
+	at java.base/sun.nio.ch.SocketAdaptor.connect(SocketAdaptor.java:98)
+	at oracle.net.nt.TimeoutSocketChannel.doConnect(TimeoutSocketChannel.java:288)
+	at oracle.net.nt.TimeoutSocketChannel.initializeSocketChannel(TimeoutSocketChannel.java:268)
+	at oracle.net.nt.TimeoutSocketChannel.connect(TimeoutSocketChannel.java:235)
+	at oracle.net.nt.TimeoutSocketChannel.&lt;init&gt;(TimeoutSocketChannel.java:202)
+	at oracle.net.nt.TcpNTAdapter.establishSocket(TcpNTAdapter.java:335)
+	... 51 more
+</pre>
+</span>
+</div>
+</div>
+<div id="tab1" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="failures">testSearchCourseList()</td>
+<td class="failures">22.863s</td>
+<td class="failures">failed</td>
+</tr>
+</table>
+</div>
+<div id="tab2" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>21:37:53.698 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.example.SeProject.mapper.CourseSearchMapperTest]: CourseSearchMapperTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+21:37:53.810 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.example.SeProject.SeProjectApplication for test class com.example.SeProject.mapper.CourseSearchMapperTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.4.0)
+
+2024-12-07T21:37:54.138+09:00  INFO 12368 --- [SeProject] [    Test worker] c.e.S.mapper.CourseSearchMapperTest      : Starting CourseSearchMapperTest using Java 17.0.2 with PID 12368 (started by minseo in C:\Users\minseo\IdeaProjects\SeProject-backend)
+2024-12-07T21:37:54.139+09:00  INFO 12368 --- [SeProject] [    Test worker] c.e.S.mapper.CourseSearchMapperTest      : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2024-12-07T21:37:55.490+09:00  INFO 12368 --- [SeProject] [    Test worker] c.e.S.mapper.CourseSearchMapperTest      : Started CourseSearchMapperTest in 1.556 seconds (process running for 2.544)
+2024-12-07T21:37:56.140+09:00  INFO 12368 --- [SeProject] [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 8.11.1</a> at 2024. 12. 7. 오후 9:38:18</p>
+</div>
+</div>
+</body>
+</html>
