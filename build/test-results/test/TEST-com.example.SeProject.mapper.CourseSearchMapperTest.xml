@@ -1,104 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.example.SeProject.mapper.CourseSearchMapperTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2024-12-07T12:37:55" hostname="DESKTOP-0SIVPM6" time="22.863">
+<testsuite name="com.example.SeProject.mapper.CourseSearchMapperTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-12-07T13:08:32" hostname="DESKTOP-0SIVPM6" time="1.395">
   <properties/>
-  <testcase name="testSearchCourseList()" classname="com.example.SeProject.mapper.CourseSearchMapperTest" time="22.863">
-    <failure message="org.mybatis.spring.MyBatisSystemException: &#13;&#10;### Error querying database.  Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection&#13;&#10;### The error may exist in file [C:\Users\minseo\IdeaProjects\SeProject-backend\build\resources\main\mapper\CourseSearchMapper.xml]&#13;&#10;### The error may involve com.example.SeProject.mapper.CourseSearchMapper.searchCourseList&#13;&#10;### The error occurred while executing a query&#13;&#10;### Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection" type="org.mybatis.spring.MyBatisSystemException">org.mybatis.spring.MyBatisSystemException: 
-### Error querying database.  Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
-### The error may exist in file [C:\Users\minseo\IdeaProjects\SeProject-backend\build\resources\main\mapper\CourseSearchMapper.xml]
-### The error may involve com.example.SeProject.mapper.CourseSearchMapper.searchCourseList
-### The error occurred while executing a query
-### Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
-	at app//org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:99)
-	at app//org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:347)
-	at app/jdk.proxy3/jdk.proxy3.$Proxy68.selectList(Unknown Source)
-	at app//org.mybatis.spring.SqlSessionTemplate.selectList(SqlSessionTemplate.java:194)
-	at app//org.apache.ibatis.binding.MapperMethod.executeForMany(MapperMethod.java:147)
-	at app//org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:80)
-	at app//org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:141)
-	at app//org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86)
-	at app/jdk.proxy3/jdk.proxy3.$Proxy71.searchCourseList(Unknown Source)
-	at app//com.example.SeProject.mapper.CourseSearchMapperTest.testSearchCourseList(CourseSearchMapperTest.java:29)
-	at java.base@17.0.2/java.lang.reflect.Method.invoke(Method.java:568)
-	at java.base@17.0.2/java.util.ArrayList.forEach(ArrayList.java:1511)
-	at java.base@17.0.2/java.util.ArrayList.forEach(ArrayList.java:1511)
-Caused by: org.apache.ibatis.exceptions.PersistenceException: 
-### Error querying database.  Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
-### The error may exist in file [C:\Users\minseo\IdeaProjects\SeProject-backend\build\resources\main\mapper\CourseSearchMapper.xml]
-### The error may involve com.example.SeProject.mapper.CourseSearchMapper.searchCourseList
-### The error occurred while executing a query
-### Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
-	at app//org.apache.ibatis.exceptions.ExceptionFactory.wrapException(ExceptionFactory.java:30)
-	at app//org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:156)
-	at app//org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:147)
-	at app//org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:142)
-	at java.base@17.0.2/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base@17.0.2/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base@17.0.2/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base@17.0.2/java.lang.reflect.Method.invoke(Method.java:568)
-	at app//org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:333)
-	... 11 more
-Caused by: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
-	at app//org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:84)
-	at app//org.mybatis.spring.transaction.SpringManagedTransaction.openConnection(SpringManagedTransaction.java:77)
-	at app//org.mybatis.spring.transaction.SpringManagedTransaction.getConnection(SpringManagedTransaction.java:64)
-	at app//org.apache.ibatis.executor.BaseExecutor.getConnection(BaseExecutor.java:348)
-	at app//org.apache.ibatis.executor.SimpleExecutor.prepareStatement(SimpleExecutor.java:89)
-	at app//org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:64)
-	at app//org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:336)
-	at app//org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:158)
-	at app//org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:110)
-	at app//org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:90)
-	at app//org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:154)
-	... 18 more
-Caused by: java.sql.SQLException: ORA-12541: 접속할 수 없습니다. host 10.0.14.50 port 1521에 리스너가 없습니다. (CONNECTION_ID=EGfopgFDQoe1te8R+6Q+yw==)
-https://docs.oracle.com/error-help/db/ora-12541/
-	at oracle.jdbc.driver.T4CConnection.handleLogonNetException(T4CConnection.java:1617)
-	at oracle.jdbc.driver.T4CConnection.logon(T4CConnection.java:1139)
-	at oracle.jdbc.driver.PhysicalConnection.connect(PhysicalConnection.java:1206)
-	at oracle.jdbc.driver.T4CDriverExtension.getConnection(T4CDriverExtension.java:105)
-	at oracle.jdbc.driver.OracleDriver.connect(OracleDriver.java:886)
-	at oracle.jdbc.driver.OracleDriver.connect(OracleDriver.java:693)
-	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:137)
-	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:360)
-	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:202)
-	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:461)
-	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:550)
-	at com.zaxxer.hikari.pool.HikariPool.&lt;init&gt;(HikariPool.java:98)
-	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:111)
-	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:160)
-	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:118)
-	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:81)
-	... 28 more
-Caused by: oracle.net.ns.NetException: ORA-12541: 접속할 수 없습니다. host 10.0.14.50 port 1521에 리스너가 없습니다. (CONNECTION_ID=EGfopgFDQoe1te8R+6Q+yw==)
-https://docs.oracle.com/error-help/db/ora-12541/
-	at app//oracle.net.nt.TcpNTAdapter.handleEstablishSocketException(TcpNTAdapter.java:414)
-	at app//oracle.net.nt.TcpNTAdapter.establishSocket(TcpNTAdapter.java:346)
-	at app//oracle.net.nt.TcpNTAdapter.connect(TcpNTAdapter.java:224)
-	at app//oracle.net.nt.ConnOption.connect(ConnOption.java:332)
-	at app//oracle.net.nt.ConnStrategy.executeConnOption(ConnStrategy.java:1222)
-	at app//oracle.net.nt.ConnStrategy.execute(ConnStrategy.java:761)
-	at app//oracle.net.resolver.AddrResolution.resolveAndExecute(AddrResolution.java:711)
-	at app//oracle.net.ns.NSProtocol.establishConnection(NSProtocol.java:959)
-	at app//oracle.net.ns.NSProtocol.connect(NSProtocol.java:328)
-	at app//oracle.jdbc.driver.T4CConnection.connectNetworkSessionProtocol(T4CConnection.java:3419)
-	at app//oracle.jdbc.driver.T4CConnection.logon(T4CConnection.java:1018)
-	... 42 more
-Caused by: java.net.ConnectException: Connection timed out: no further information
-	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
-	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:672)
-	at java.base/sun.nio.ch.SocketChannelImpl.finishTimedConnect(SocketChannelImpl.java:1148)
-	at java.base/sun.nio.ch.SocketChannelImpl.blockingConnect(SocketChannelImpl.java:1183)
-	at java.base/sun.nio.ch.SocketAdaptor.connect(SocketAdaptor.java:98)
-	at oracle.net.nt.TimeoutSocketChannel.doConnect(TimeoutSocketChannel.java:288)
-	at oracle.net.nt.TimeoutSocketChannel.initializeSocketChannel(TimeoutSocketChannel.java:268)
-	at oracle.net.nt.TimeoutSocketChannel.connect(TimeoutSocketChannel.java:235)
-	at oracle.net.nt.TimeoutSocketChannel.&lt;init&gt;(TimeoutSocketChannel.java:202)
-	at oracle.net.nt.TcpNTAdapter.establishSocket(TcpNTAdapter.java:335)
-	... 51 more
-</failure>
-  </testcase>
-  <system-out><![CDATA[21:37:53.698 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.example.SeProject.mapper.CourseSearchMapperTest]: CourseSearchMapperTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-21:37:53.810 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.example.SeProject.SeProjectApplication for test class com.example.SeProject.mapper.CourseSearchMapperTest
+  <testcase name="testSearchCourseList()" classname="com.example.SeProject.mapper.CourseSearchMapperTest" time="1.395"/>
+  <system-out><![CDATA[22:08:31.088 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.example.SeProject.mapper.CourseSearchMapperTest]: CourseSearchMapperTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+22:08:31.200 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.example.SeProject.SeProjectApplication for test class com.example.SeProject.mapper.CourseSearchMapperTest
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -109,10 +14,300 @@ Caused by: java.net.ConnectException: Connection timed out: no further informati
 
  :: Spring Boot ::                (v3.4.0)
 
-2024-12-07T21:37:54.138+09:00  INFO 12368 --- [SeProject] [    Test worker] c.e.S.mapper.CourseSearchMapperTest      : Starting CourseSearchMapperTest using Java 17.0.2 with PID 12368 (started by minseo in C:\Users\minseo\IdeaProjects\SeProject-backend)
-2024-12-07T21:37:54.139+09:00  INFO 12368 --- [SeProject] [    Test worker] c.e.S.mapper.CourseSearchMapperTest      : No active profile set, falling back to 1 default profile: "default"
-2024-12-07T21:37:55.490+09:00  INFO 12368 --- [SeProject] [    Test worker] c.e.S.mapper.CourseSearchMapperTest      : Started CourseSearchMapperTest in 1.556 seconds (process running for 2.544)
-2024-12-07T21:37:56.140+09:00  INFO 12368 --- [SeProject] [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-12-07T22:08:31.531+09:00  INFO 22396 --- [SeProject] [    Test worker] c.e.S.mapper.CourseSearchMapperTest      : Starting CourseSearchMapperTest using Java 17.0.2 with PID 22396 (started by minseo in C:\Users\minseo\IdeaProjects\SeProject-backend)
+2024-12-07T22:08:31.532+09:00  INFO 22396 --- [SeProject] [    Test worker] c.e.S.mapper.CourseSearchMapperTest      : No active profile set, falling back to 1 default profile: "default"
+2024-12-07T22:08:32.877+09:00  INFO 22396 --- [SeProject] [    Test worker] c.e.S.mapper.CourseSearchMapperTest      : Started CourseSearchMapperTest in 1.552 seconds (process running for 2.542)
+2024-12-07T22:08:33.512+09:00  INFO 22396 --- [SeProject] [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-12-07T22:08:33.984+09:00  INFO 22396 --- [SeProject] [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@7dd7ec56
+2024-12-07T22:08:33.985+09:00  INFO 22396 --- [SeProject] [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+Course Code: 000001
+Course Name: C언어및실습
+Professor Name: 김성환
+Course Start Time: 13:00
+Course End Time: 17:00
+Course Day: 화
+Total Capacity: 30
+====================================
+Course Code: 000002
+Course Name: C언어및실습
+Professor Name: 남현우
+Course Start Time: 13:00
+Course End Time: 17:00
+Course Day: 화
+Total Capacity: 35
+====================================
+Course Code: 000003
+Course Name: C언어및실습
+Professor Name: 남현우
+Course Start Time: 13:00
+Course End Time: 17:00
+Course Day: 금
+Total Capacity: 35
+====================================
+Course Code: 000004
+Course Name: 소프트웨어공학
+Professor Name: 김지은
+Course Start Time: 10:00
+Course End Time: 13:00
+Course Day: 화
+Total Capacity: 70
+====================================
+Course Code: 000005
+Course Name: 자료구조
+Professor Name: 송영록
+Course Start Time: 16:00
+Course End Time: 18:00
+Course Day: 월
+Total Capacity: 35
+====================================
+Course Code: 000005
+Course Name: 자료구조
+Professor Name: 송영록
+Course Start Time: 16:00
+Course End Time: 17:00
+Course Day: 목
+Total Capacity: 35
+====================================
+Course Code: 000006
+Course Name: 자료구조
+Professor Name: 송영록
+Course Start Time: 14:00
+Course End Time: 16:00
+Course Day: 월
+Total Capacity: 35
+====================================
+Course Code: 000006
+Course Name: 자료구조
+Professor Name: 송영록
+Course Start Time: 15:00
+Course End Time: 16:00
+Course Day: 목
+Total Capacity: 35
+====================================
+Course Code: 000007
+Course Name: 창의공학기초설계
+Professor Name: 노창배
+Course Start Time: 18:00
+Course End Time: 22:00
+Course Day: 화
+Total Capacity: 40
+====================================
+Course Code: 000008
+Course Name: 창의공학기초설계
+Professor Name: 노창배
+Course Start Time: 18:00
+Course End Time: 22:00
+Course Day: 금
+Total Capacity: 40
+====================================
+Course Code: 000009
+Course Name: 컴퓨터과학종합설계
+Professor Name: 김진석
+Course Start Time: 14:00
+Course End Time: 18:00
+Course Day: 수
+Total Capacity: 15
+====================================
+Course Code: 000010
+Course Name: 컴퓨터과학종합설계
+Professor Name: 최혁
+Course Start Time: 14:00
+Course End Time: 18:00
+Course Day: 수
+Total Capacity: 16
+====================================
+Course Code: 000011
+Course Name: 스마트금융개론
+Professor Name: 김성환
+Course Start Time: 14:00
+Course End Time: 17:00
+Course Day: 목
+Total Capacity: 30
+====================================
+Course Code: 000012
+Course Name: 프로그래밍언어론
+Professor Name: 김지은
+Course Start Time: 11:00
+Course End Time: 14:00
+Course Day: 수
+Total Capacity: 50
+====================================
+Course Code: 000013
+Course Name: 인터넷프로그래밍및실습
+Professor Name: 추칠엽
+Course Start Time: 14:00
+Course End Time: 16:00
+Course Day: 수
+Total Capacity: 40
+====================================
+Course Code: 000013
+Course Name: 인터넷프로그래밍및실습
+Professor Name: 추칠엽
+Course Start Time: 16:00
+Course End Time: 18:00
+Course Day: 수
+Total Capacity: 40
+====================================
+Course Code: 000014
+Course Name: 데이터통신
+Professor Name: 안상현
+Course Start Time: 11:00
+Course End Time: 13:00
+Course Day: 화
+Total Capacity: 35
+====================================
+Course Code: 000014
+Course Name: 데이터통신
+Professor Name: 안상현
+Course Start Time: 11:00
+Course End Time: 12:00
+Course Day: 목
+Total Capacity: 35
+====================================
+Course Code: 000015
+Course Name: 데이터통신
+Professor Name: 안상현
+Course Start Time: 15:00
+Course End Time: 17:00
+Course Day: 화
+Total Capacity: 35
+====================================
+Course Code: 000015
+Course Name: 데이터통신
+Professor Name: 안상현
+Course Start Time: 12:00
+Course End Time: 13:00
+Course Day: 목
+Total Capacity: 35
+====================================
+Course Code: 000016
+Course Name: 데이터베이스
+Professor Name: 홍의경
+Course Start Time: 13:00
+Course End Time: 16:00
+Course Day: 화
+Total Capacity: 50
+====================================
+Course Code: 000017
+Course Name: 인공지능
+Professor Name: 이경재
+Course Start Time: 14:00
+Course End Time: 17:00
+Course Day: 월
+Total Capacity: 60
+====================================
+Course Code: 000018
+Course Name: 소프트웨어응용
+Professor Name: 황혜수
+Course Start Time: 10:00
+Course End Time: 13:00
+Course Day: 월
+Total Capacity: 50
+====================================
+Course Code: 000019
+Course Name: 컴퓨터그래픽스
+Professor Name: 김민호
+Course Start Time: 13:00
+Course End Time: 16:00
+Course Day: 월
+Total Capacity: 40
+====================================
+Course Code: 000020
+Course Name: 임베디드시스템설계
+Professor Name: 이동희
+Course Start Time: 14:00
+Course End Time: 17:00
+Course Day: 목
+Total Capacity: 46
+====================================
+Course Code: 000021
+Course Name: 네트워크보안
+Professor Name: 안상현
+Course Start Time: 16:00
+Course End Time: 18:00
+Course Day: 월
+Total Capacity: 40
+====================================
+Course Code: 000021
+Course Name: 네트워크보안
+Professor Name: 안상현
+Course Start Time: 10:00
+Course End Time: 11:00
+Course Day: 목
+Total Capacity: 40
+====================================
+Course Code: 000022
+Course Name: 마이크로프로세서설계및실습
+Professor Name: 최혁
+Course Start Time: 09:00
+Course End Time: 13:00
+Course Day: 수
+Total Capacity: 50
+====================================
+Course Code: 000023
+Course Name: 유닉스프로그래밍
+Professor Name: 이동희
+Course Start Time: 10:00
+Course End Time: 13:00
+Course Day: 월
+Total Capacity: 46
+====================================
+Course Code: 000024
+Course Name: 수치해석
+Professor Name: 김민호
+Course Start Time: 14:00
+Course End Time: 17:00
+Course Day: 금
+Total Capacity: 70
+====================================
+Course Code: 000025
+Course Name: 데이터베이스설계
+Professor Name: 홍의경
+Course Start Time: 13:00
+Course End Time: 16:00
+Course Day: 화
+Total Capacity: 21
+====================================
+Course Code: 000026
+Course Name: 선형대수
+Professor Name: 김민호
+Course Start Time: 17:00
+Course End Time: 18:00
+Course Day: 화
+Total Capacity: 70
+====================================
+Course Code: 000026
+Course Name: 선형대수
+Professor Name: 김민호
+Course Start Time: 12:00
+Course End Time: 14:00
+Course Day: 금
+Total Capacity: 70
+====================================
+Course Code: 000027
+Course Name: 컴퓨터통신
+Professor Name: 안상현
+Course Start Time: 11:00
+Course End Time: 13:00
+Course Day: 화
+Total Capacity: 35
+====================================
+Course Code: 000027
+Course Name: 컴퓨터통신
+Professor Name: 안상현
+Course Start Time: 11:00
+Course End Time: 12:00
+Course Day: 금
+Total Capacity: 35
+====================================
+Course Code: 000028
+Course Name: 이산수학
+Professor Name: 정형구
+Course Start Time: 13:00
+Course End Time: 16:00
+Course Day: 화
+Total Capacity: 40
+====================================
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

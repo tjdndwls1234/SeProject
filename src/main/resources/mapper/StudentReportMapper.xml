@@ -2,6 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.SeProject.mapper.StudentReportMapper">
+    <resultMap id="StudentReportDto" type="com.example.SeProject.dto.StudentReportDto">
+        <result property="courseName" column="COURSE_NAME"/>
+        <result property="courseDevision" column="COURSE_DEVISION"/>
+        <result property="credit" column="CREDIT"/>
+        <result property="courseReport" column="COURSE_REPORT"/>
+    </resultMap>
+    <select id="studentReportSearch" parameterType="String"
+            resultMap="StudentReportDto" resultType="com.example.SeProject.dto.StudentReportDto">
+        SELECT c.COURSE_NAME, c_p.COURSE_DEVISION, c.CREDIT, s_r.COURSE_REPORT
+        FROM STUDENT_REPORT s_r
+        JOIN COURSE c ON c.COURSE_CODE = s_r.COURSE_CODE
+        JOIN COURSE_PROPERTY c_p ON c.COURSE_CODE = s_r.COURSE_CODE
+        WHERE s_r.STUDENT_CODE = {#studentCode}
+    </select>
     <select id="retakeableCourseListSearch" parameterType="String"
             resultType="String">
         SELECT COURSE_CODE
