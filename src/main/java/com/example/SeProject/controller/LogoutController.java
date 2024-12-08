@@ -1,16 +1,23 @@
 package com.example.SeProject.controller;
 
-
 import com.example.SeProject.service.LogoutService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import jakarta.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RequestMapping
+@RequiredArgsConstructor
+@RestController
 public class LogoutController {
     public final LogoutService logoutService;
 
-    @Autowired
-    public LogoutController(LogoutService logoutService){
-        this.logoutService = logoutService;
+    @PostMapping("/logout")
+    public ResponseEntity<String> logOut(HttpSession session) {
+        logoutService.logOut(session);  //세션 무효화
+        return ResponseEntity.ok("Logout Success");
     }
+
 }
