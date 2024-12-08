@@ -45,6 +45,9 @@ const majors = [
   { id: 3, label: "교양필수" },
   { id: 4, label: "교양선택" },
   { id: 5, label: "일반선택" },
+  { id: 6, label: "ROTC" },
+  { id: 7, label: "교직" },
+  { id: 8, label: "교환학점" },
 ];
 
 const years = [
@@ -179,7 +182,7 @@ const Index = () => {
                 handleChange("courseDevision", value?.label || "")
               }
               size="small"
-              renderInput={(params) => <TextField {...params} label="전공" />}
+              renderInput={(params) => <TextField {...params} label="교과구분" />}
             />
             <Autocomplete
               options={years}
