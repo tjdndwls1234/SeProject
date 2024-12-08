@@ -16,8 +16,9 @@ import {
   TableRow,
   Paper,
   Button,
+  IconButton
 } from "@mui/material";
-
+import SystemUpdateAltIcon from "@mui/icons-material/SystemUpdateAlt";
 
 // import "../styles.css";
 // import "../reset.css";
@@ -112,6 +113,10 @@ const Index = () => {
 
   const handleChange = (field, value) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const handleAddCourse = (course) => {
+    console.log("담은 강의:", course);
   };
 
   // const { taskListWithAutoPosition, timeTableCallbackRef } = useTimeTable({
@@ -267,7 +272,7 @@ const Index = () => {
             조회
           </Button>
 
-          <TableContainer component={Paper} sx={{ width: 750, mt: 4 }}>
+          <TableContainer component={Paper} sx={{ width: 900, mt: 4 }}>
             <Table aria-label="simple table">
               <TableHead>
                 <TableRow sx={{ bgcolor: "background.default" }}>
@@ -281,14 +286,14 @@ const Index = () => {
                   <TableCell align="right" sx={{ color: "#ffffff" }}>요일</TableCell>
                   <TableCell align="right" sx={{ color: "#ffffff" }}>강의시간</TableCell>
                   <TableCell align="right" sx={{ color: "#ffffff" }}>정원</TableCell>
-                  {/* <TableCell align="right" sx={{ color: "#ffffff" }}>담기</TableCell> */}
+                  <TableCell align="right" sx={{ color: "#ffffff" }}>담기</TableCell>
                 </TableRow>
               </TableHead>
 
               <TableBody>
                 {courses.length === 0 ? (
                   <TableRow>
-                    <TableCell colSpan={10} align="center">
+                    <TableCell colSpan={11} align="center">
                       조건에 맞는 강의가 없습니다.
                     </TableCell>
                   </TableRow>
@@ -305,9 +310,15 @@ const Index = () => {
                       <TableCell align="right">{course.courseDay}</TableCell>
                       <TableCell align="right">{`${course.courseStartTime} - ${course.courseEndTime}`}</TableCell>
                       <TableCell align="right">{course.totalCapacity}</TableCell>
-                      {/* <TableCell align="right">
-                        <Button></Button>
-                      </TableCell> */}
+                      <TableCell align="right">
+                        <IconButton
+                          color="primary"
+                          onClick={() => handleAddCourse(course)}
+                          aria-label="add"
+                        >
+                          <SystemUpdateAltIcon />
+                        </IconButton>
+                      </TableCell>
                     </TableRow>
                   ))
                 )}
