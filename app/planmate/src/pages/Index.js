@@ -38,6 +38,12 @@ const departments = [
   { id: 3, label: "기계공학과" },
 ];
 
+const majors = [
+  { id: 1, label: "컴퓨터과학 전공" },
+  { id: 2, label: "전기전자컴퓨터공학 전공" },
+  { id: 3, label: "기계공학 전공" },
+];
+
 const years = [
   { id: 1, label: "1" },
   { id: 2, label: "2" },
@@ -138,8 +144,8 @@ const Index = () => {
             variant="outlined"
             size="small"
             label="검색어 입력"
-            value={formData.studentCode}
-            onChange={(e) => handleChange("studentCode", e.target.value)}
+            value={formData.courseKeyword}
+            onChange={(e) => handleChange("courseKeyword", e.target.value)}
             sx={{
               display: "flex",
               width: 382,
@@ -154,10 +160,19 @@ const Index = () => {
               options={departments}
               sx={{ width: 150 }}
               onChange={(e, value) =>
-                handleChange("studentDepartmentCode", value?.label || "")
+                handleChange("courseDepartmentName", value?.label || "")
               }
               size="small"
               renderInput={(params) => <TextField {...params} label="학부/과" />}
+            />
+            <Autocomplete
+              options={majors}
+              sx={{ width: 100, ml: 2 }}
+              onChange={(e, value) =>
+                handleChange("courseDevision", value?.label || "")
+              }
+              size="small"
+              renderInput={(params) => <TextField {...params} label="전공" />}
             />
             <Autocomplete
               options={years}
