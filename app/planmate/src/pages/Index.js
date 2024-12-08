@@ -39,9 +39,11 @@ const departments = [
 ];
 
 const majors = [
-  { id: 1, label: "컴퓨터과학 전공" },
-  { id: 2, label: "전기전자컴퓨터공학 전공" },
-  { id: 3, label: "기계공학 전공" },
+  { id: 1, label: "전공필수" },
+  { id: 2, label: "전공선택" },
+  { id: 3, label: "교양필수" },
+  { id: 4, label: "교양선택" },
+  { id: 5, label: "일반선택" },
 ];
 
 const years = [
@@ -279,6 +281,7 @@ const Index = () => {
                   <TableCell align="right" sx={{ color: "#ffffff" }}>요일</TableCell>
                   <TableCell align="right" sx={{ color: "#ffffff" }}>강의시간</TableCell>
                   <TableCell align="right" sx={{ color: "#ffffff" }}>정원</TableCell>
+                  {/* <TableCell align="right" sx={{ color: "#ffffff" }}>담기</TableCell> */}
                 </TableRow>
               </TableHead>
 
@@ -302,6 +305,9 @@ const Index = () => {
                       <TableCell align="right">{course.courseDay}</TableCell>
                       <TableCell align="right">{`${course.courseStartTime} - ${course.courseEndTime}`}</TableCell>
                       <TableCell align="right">{course.totalCapacity}</TableCell>
+                      {/* <TableCell align="right">
+                        <Button></Button>
+                      </TableCell> */}
                     </TableRow>
                   ))
                 )}
