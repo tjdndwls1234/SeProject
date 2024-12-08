@@ -55,10 +55,10 @@
         <if test="courseStartTime != null">
         AND c_s.COURSE_START_TIME = #{courseStartTime}
         </if>
-        <if test="isCourseEngineeringCertified == 'Y'">
+        <if test="isCourseEngineeringCertified == true">
         AND c.COURSE_ENGINEERING_CERTIFIED = 'Y'
         </if>
-        <if test="isCourseProhibit == 'Y'">
+        <if test="isCourseProhibit == true">
         AND c_p.DEPARTMENT_CODE != #{studentDepartmentCode}
         </if>
     </select>

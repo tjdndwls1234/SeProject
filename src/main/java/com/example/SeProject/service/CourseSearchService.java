@@ -38,7 +38,7 @@ public class CourseSearchService {
         if (courseList.isEmpty()) return courseList;
 
         //재수강 가능 과목 필터링
-        if (Objects.equals(criteria.getIsRetakeableCourse(), "Y")) {
+        if (criteria.isRetakeableCourse()) {
             List<String> retakeableCourseList = this.studentReportMapper.retakeableCourseListSearch(criteria);
 
             if (!retakeableCourseList.isEmpty()) {
@@ -48,7 +48,7 @@ public class CourseSearchService {
         }
 
         //시간표 겹치는 과목 필터링
-        if (Objects.equals(criteria.getIsScheduleConflict(), "Y")){
+        if (criteria.isScheduleConflict()){
             List<StudentScheduleDto> courseListOnTimetable = studentScheduleMapper.getTimetable(criteria.getStudentCode());
             courseList.removeIf(course -> {
                 for (StudentScheduleDto courseOnTimetable : courseListOnTimetable) {
@@ -59,13 +59,17 @@ public class CourseSearchService {
                 return false;
             });
         }
+
+
         return courseList;
     }
+
 
     public boolean isOverlapping(StudentScheduleDto course1, CourseDto course2){
         if (!Objects.equals(course1.getCourseDay(), course2.getCourseDay())) return false;
         CourseTime courseA = new CourseTime(course1);
         CourseTime courseB = new CourseTime(course2);
+        System.out.println("1");
 
         return courseA.isOverLappingWith(courseB);
     }

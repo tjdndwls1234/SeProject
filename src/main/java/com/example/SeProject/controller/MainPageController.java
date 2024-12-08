@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/MainPage")
+@RequestMapping("/")
 public class MainPageController {
     private final CourseSearchService courseSearchService;
     private final TimetableService timetableService;
@@ -27,7 +27,7 @@ public class MainPageController {
     }
 
     //Search Course List
-    @GetMapping("/CourseSearch")
+    @PostMapping("/MainPage/CourseSearch")
     public ResponseEntity<List<CourseDto>> searchCourseList(@RequestBody CourseSearchCriteria criteria, HttpServletRequest request) {
         //Call Session and Set StudentCode in criteria
         HttpSession session = request.getSession(false);
@@ -37,7 +37,7 @@ public class MainPageController {
     }
 
     //Update Timetable
-    @GetMapping(value = "/TimetableUpdate")
+    @PostMapping(value = "/TimetableUpdate")
     public ResponseEntity<List<StudentScheduleDto>> updateTimetable(HttpServletRequest request) {
         String studentCode = request.getParameter("studentCode");
 

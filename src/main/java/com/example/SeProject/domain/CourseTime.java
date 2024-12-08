@@ -28,6 +28,10 @@ public class CourseTime {
 
     public boolean isOverLappingWith(CourseTime other) {
 
+        if (this.startTime.equals(other.startTime) && this.endTime.equals(other.endTime)) {
+            return true;
+        }
+
         if (this.endTime.equals(other.startTime) || this.startTime.equals(other.endTime)) {
             return false;
         }

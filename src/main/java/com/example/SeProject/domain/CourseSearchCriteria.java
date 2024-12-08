@@ -15,8 +15,8 @@ public class CourseSearchCriteria {
     private String grade; // Front에서 입력받음
     private String courseStartTime; // Front에서 입력받음
     private String courseDay; // Front에서 입력받음
-    private String isCourseEngineeringCertified; // Front에서 입력받음
-    private String isCourseProhibit; // Front에서 입력받음
-    private String isRetakeableCourse; // Front에서 입력받음
-    private String isScheduleConflict; // Front에서 입력받음
+    private boolean isCourseEngineeringCertified; // Front에서 입력받음
+    private boolean isCourseProhibit; // Front에서 입력받음
+    private boolean isRetakeableCourse; // Front에서 입력받음
+    private boolean isScheduleConflict; // Front에서 입력받음
 }
