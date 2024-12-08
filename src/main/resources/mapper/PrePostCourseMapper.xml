@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.SeProject.mapper.PrePostCourseMapper">
+    <resultMap id="PrePostCourseDto" type="com.example.SeProject.dto.PrePostCourseDto">
+        <result property="preCourseName" column="PRE_COURSE_NAME"/>
+        <result property="preCourseDevision" column="PRE_COURSE_DEVISION"/>
+        <result property="preCourseGrade" column="PRE_GRADE"/>
+        <result property="preCourseTerm" column="PRE_COURSE_TERM"/>
+        <result property="preCourseCredit" column="PRE_CREDIT"/>
+        <result property="postCourseName" column="POST_COURSE_NAME"/>
+        <result property="postCourseDevision" column="POST_COURSE_DEVISION"/>
+        <result property="postCourseGrade" column="POST_GRADE"/>
+        <result property="postCourseTerm" column="POST_COURSE_TERM"/>
+        <result property="postCourseCredit" column="POST_CREDIT"/>
+    </resultMap>
+    <select id="getTimetable" parameterType="String"
+            resultType="com.example.SeProject.dto.PrePostCourseDto" resultMap="PrePostCourseDto">
+        SELECT c1.COURSE_NAME AS PRE_COURSE_NAME,
+               c_p1.COURSE_DEVISION AS PRE_COURSE_DEVISION,
+               c_p1.GRADE AS PRE_GRADE,
+               c_p1.COURSE_TERM AS PRE_COURSE_TERM,
+               c1.CREDIT AS PRE_CREDIT,
+               c2.COURSE_NAME AS POST_COURSE_NAME,
+               c_p2.COURSE_DEVISION AS POST_COURSE_DEVISION,
+               c_p2.GRADE AS POST_GRADE,
+               c_p2.COURSE_TERM AS POST_COURSE_TERM,
+               c2.CREDIT AS POST_CREDIT
+        FROM DEPARTMENT d
+        JOIN COURSE_PROPERTY c_p1 ON c_p1.DEPARTMENT_CODE = d.DEPARTMENT_CODE
+        JOIN COURSE c1 ON c1.COURSE_CODE = c_p1.COURSE_CODE
+        JOIN COURSE_PROPERTY c_p2 on c_p2.DEPARTMENT_CODE = d.DEPARTMENT_CODE
+        JOIN COURSE c2 ON c2.COURSE_CODE = c_p2.COURSE_CODE
+        JOIN COURSE_PRE_POST p on p.COURSE_PRE_CODE = c1.COURSE_CODE AND p.COURSE_POST_CODE = c2.COURSE_CODE
+        WHERE d.DEPARTMENT_NAME = #{departmentName}
+        ORDER BY c_p1.GRADE, c1.COURSE_NAME
+    </select>
+</mapper>

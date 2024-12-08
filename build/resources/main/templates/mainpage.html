@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Search</title>
+    <script>
+        // 폼 제출 시 호출되는 함수
+        function searchCourses() {
+            // 입력 값 가져오기
+            const studentCode = document.getElementById("studentCode").value;
+            const courseDepartmentName = document.getElementById("courseDepartmentName").value;
+            const studentDepartmentName = document.getElementById("studentDepartmentName").value;
+            const grade = document.getElementById("grade").value;
+            const courseStartTime = document.getElementById("courseStartTime").value;
+            const courseDay = document.getElementById("courseDay").value;
+            const isCourseEngineeringCertified = document.getElementById("isCourseEngineeringCertified").checked ? 'Y' : 'N';
+            const isCourseProhibit = document.getElementById("isCourseProhibit").checked ? 'Y' : 'N';
+            const isRetakeableCourse = document.getElementById("isRetakeableCourse").checked ? 'Y' : 'N';
+            const isScheduleConflict = document.getElementById("isScheduleConflict").checked ? 'Y' : 'N';
+
+            // API 호출 URL 설정
+            const url = `/MainPage/CourseSearch?studentCode=${studentCode}&courseDepartmentName=${courseDepartmentName}&studentDepartmentName=${studentDepartmentName}&grade=${grade}&courseStartTime=${courseStartTime}&courseDay=${courseDay}&isCourseEngineeringCertified=${isCourseEngineeringCertified}&isCourseProhibit=${isCourseProhibit}&isRetakeableCourse=${isRetakeableCourse}&isScheduleConflict=${isScheduleConflict}`;
+
+            // AJAX 요청 보내기
+            fetch(url)
+                .then(response => response.json()) // JSON 형식으로 응답 받기
+                .then(data => {
+                    // 응답 데이터를 HTML에 표시
+                    let resultHTML = '<table border="1"><tr><th>Course Code</th><th>Course Name</th><th>Professor</th><th>Day</th><th>Start Time</th><th>End Time</th><th>Classroom</th></tr>';
+                    data.forEach(course => {
+                        resultHTML += `<tr>
+                                            <td>${course.courseCode}</td>
+                                            <td>${course.courseName}</td>
+                                            <td>${course.professorName}</td>
+                                            <td>${course.courseDay}</td>
+                                            <td>${course.courseStartTime}</td>
+                                            <td>${course.courseEndTime}</td>
+                                            <td>${course.classroom}</td>
+                                         </tr>`;
+                    });
+                    resultHTML += '</table>';
+                    document.getElementById("results").innerHTML = resultHTML;
+                })
+                .catch(error => {
+                    console.error("Error fetching courses:", error);
+                    document.getElementById("results").innerHTML = "데이터를 불러오는 중 오류가 발생했습니다.";
+                });
+        }
+    </script>
+</head>
+<body>
+
+<h1>과목 검색</h1>
+
+<form id="searchForm" onsubmit="event.preventDefault(); searchCourses();">
+    <label for="studentCode">학생 코드:</label>
+    <input type="text" id="studentCode" name="studentCode" required><br><br>
+
+    <label for="courseDepartmentName">과목 학과:</label>
+    <input type="text" id="courseDepartmentName" name="courseDepartmentName"><br><br>
+
+    <label for="studentDepartmentName">학생 학과:</label>
+    <input type="text" id="studentDepartmentName" name="studentDepartmentName"><br><br>
+
+    <label for="grade">학년:</label>
+    <input type="text" id="grade" name="grade"><br><br>
+
+    <label for="courseStartTime">수업 시작 시간:</label>
+    <input type="text" id="courseStartTime" name="courseStartTime"><br><br>
+
+    <label for="courseDay">수업 요일:</label>
+    <input type="text" id="courseDay" name="courseDay"><br><br>
+
+    <label for="isCourseEngineeringCertified">공학 인증 과목:</label>
+    <input type="checkbox" id="isCourseEngineeringCertified" name="isCourseEngineeringCertified"><br><br>
+
+    <label for="isCourseProhibit">수강 제한 과목:</label>
+    <input type="checkbox" id="isCourseProhibit" name="isCourseProhibit"><br><br>
+
+    <label for="isRetakeableCourse">재수강 가능 과목:</label>
+    <input type="checkbox" id="isRetakeableCourse" name="isRetakeableCourse"><br><br>
+
+    <label for="isScheduleConflict">시간표 충돌 과목:</label>
+    <input type="checkbox" id="isScheduleConflict" name="isScheduleConflict"><br><br>
+
+    <button type="submit">검색</button>
+</form>
+
+<div id="results"></div>
+
+</body>
+</html>
