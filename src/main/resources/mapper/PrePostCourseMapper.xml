@@ -15,7 +15,7 @@
         <result property="postCourseCredit" column="POST_CREDIT"/>
     </resultMap>
     <select id="getTimetable" parameterType="String"
-            resultType="com.example.SeProject.dto.StudentScheduleDto" resultMap="StudentScheduleDto">
+            resultType="com.example.SeProject.dto.PrePostCourseDto" resultMap="PrePostCourseDto">
         SELECT c1.COURSE_NAME AS PRE_COURSE_NAME,
                c_p1.COURSE_DEVISION AS PRE_COURSE_DEVISION,
                c_p1.GRADE AS PRE_GRADE,
@@ -35,8 +35,4 @@
         WHERE d.DEPARTMENT_NAME = #{departmentName}
         ORDER BY c_p1.GRADE, c1.COURSE_NAME
     </select>
-    <insert id="addCourseToTimetable" parameterType="com.example.SeProject.domain.TimetableEntry">
-        INSERT INTO STUDENT_SCHEDULE (STUDENT_CODE, COURSE_CODE, SCHEDULE_YEAR, SCHEDULE_TERM)
-        VALUES (#{studentCode}, #{courseCode}, '2024', '2')
-    </insert>
 </mapper>
