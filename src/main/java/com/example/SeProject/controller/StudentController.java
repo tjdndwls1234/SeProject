@@ -14,16 +14,6 @@ import java.util.List;
 public class StudentController {
     private final StudentService studentService;
 
-    //회원가입
-    @PostMapping("/signup")
-    public ResponseEntity<String> signUp(@RequestBody StudentSignUpDto studentSignUpDto) {
-        String result = studentService.signUp(studentSignUpDto);
-        if ("중복되는 아이디입니다.".equals(result)) {
-            return ResponseEntity.badRequest().body("중복되는 아이디입니다.");
-        }
-        return ResponseEntity.ok("Sign Up Success");
-    }
-
     //회원조회
     @GetMapping("/students")
     public ResponseEntity<List<StudentDto>> getAllStudents() {
