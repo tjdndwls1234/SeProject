@@ -80,7 +80,7 @@ const Index = () => {
     isCourseEngineeringCertified: false,
     isCourseProhibit: false,
     isRetakeableCourse: false,
-    isScheduleConflict: true,
+    isScheduleConflict: false,
   });
 
   const handleSearch = async () => {
@@ -212,6 +212,31 @@ const Index = () => {
             />
           </FormGroup>
 
+          <FormGroup sx={{ display: "flex", flexDirection: "row" }}>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={formData.isCourseProhibit}
+                  onChange={(e) =>
+                    handleChange("isCourseProhibit", e.target.checked)
+                  }
+                />
+              }
+              label="수강 금지 과목 조회"
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={formData.isScheduleConflict}
+                  onChange={(e) =>
+                    handleChange("isScheduleConflict", e.target.checked)
+                  }
+                />
+              }
+              label="시간이 겹치는 과목 제외"
+            />
+          </FormGroup>
+
           <Button
             variant="contained"
             onClick={handleSearch}
@@ -236,17 +261,54 @@ const Index = () => {
                   <TableCell align="right" sx={{ color: "#ffffff" }}>학점</TableCell>
                   <TableCell align="right" sx={{ color: "#ffffff" }}>교과구분</TableCell>
                   <TableCell align="right" sx={{ color: "#ffffff" }}>교수명</TableCell>
+                  <TableCell align="right" sx={{ color: "#ffffff" }}>요일</TableCell>
                   <TableCell align="right" sx={{ color: "#ffffff" }}>강의시간</TableCell>
                   <TableCell align="right" sx={{ color: "#ffffff" }}>정원</TableCell>
                 </TableRow>
               </TableHead>
+
               <TableBody>
+                {courses.length === 0 ? (
+                  <TableRow>
+                    <TableCell colSpan={10} align="center">
+                      조건에 맞는 강의가 없습니다.
+                    </TableCell>
+                  </TableRow>
+                ) : (
+                  courses.map((course, index) => (
+                    <TableRow key={index}>
+                      <TableCell>{course.courseName}</TableCell>
+                      <TableCell align="right">{course.classDevision}</TableCell>
+                      <TableCell align="right">{course.departmentName}</TableCell>
+                      <TableCell align="right">{course.grade}</TableCell>
+                      <TableCell align="right">{course.credit}</TableCell>
+                      <TableCell align="right">{course.courseDevision}</TableCell>
+                      <TableCell align="right">{course.professorName}</TableCell>
+                      <TableCell align="right">{course.courseDay}</TableCell>
+                      <TableCell align="right">{`${course.courseStartTime} - ${course.courseEndTime}`}</TableCell>
+                      <TableCell align="right">{course.totalCapacity}</TableCell>
+                    </TableRow>
+                  ))
+                )}
+              </TableBody>
+
+              {/* <TableBody>
                 {courses.map((course, index) => (
                   <TableRow
                     key={index}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
                     <TableCell>{course.courseName}</TableCell>
+                    <TableCell align="right">{course.classDevision}</TableCell>
+                    <TableCell align="right">{course.departmentName}</TableCell>
+                    <TableCell align="right">{course.grade}</TableCell>
+                    <TableCell align="right">{course.credit}</TableCell>
+                    <TableCell align="right">{course.courseDevision}</TableCell>
+                    <TableCell align="right">{course.professorName}</TableCell>
+                    <TableCell align="right">{course.courseDay}</TableCell>
+                    <TableCell align="right">{course.courseStartTime}</TableCell>
+                    <TableCell align="right">{course.totalCapacity}</TableCell> */}
+                    {/* <TableCell>{course.courseName}</TableCell>
                     <TableCell align="right">{course.section}</TableCell>
                     <TableCell align="right">{course.department}</TableCell>
                     <TableCell align="right">{course.grade}</TableCell>
@@ -254,10 +316,10 @@ const Index = () => {
                     <TableCell align="right">{course.courseType}</TableCell>
                     <TableCell align="right">{course.professor}</TableCell>
                     <TableCell align="right">{course.schedule}</TableCell>
-                    <TableCell align="right">{course.capacity}</TableCell>
-                  </TableRow>
+                    <TableCell align="right">{course.capacity}</TableCell> */}
+                  {/* </TableRow>
                 ))}
-              </TableBody>
+              </TableBody> */}
             </Table>
           </TableContainer>
 
