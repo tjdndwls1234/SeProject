@@ -69,14 +69,14 @@ const hours = [
 const Index = () => {
   const [courses, setCourses] = useState([]);
   const [formData, setFormData] = useState({
-    studentCode: "",
-    studentDepartmentCode: "",
-    courseKeyword: "",
-    courseDepartmentName: "",
-    courseDevision:"",
-    grade: "",
-    courseStartTime: "",
-    courseDay: "",
+    studentCode: null,
+    studentDepartmentCode: null,
+    courseKeyword: null,
+    courseDepartmentName: null,
+    courseDevision: null,
+    grade: null,
+    courseStartTime: null,
+    courseDay: null,
     isCourseEngineeringCertified: false,
     isCourseProhibit: false,
     isRetakeableCourse: false,
