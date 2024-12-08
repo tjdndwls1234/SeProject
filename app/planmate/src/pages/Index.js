@@ -122,9 +122,37 @@ const Index = () => {
     console.log("담은 강의:", course);
   };
 
-  // const { taskListWithAutoPosition, timeTableCallbackRef } = useTimeTable({
-  //   taskList: exampleTaskList,
-  // });
+  // 테스트용 JSON
+  // const courses = [
+  //   {
+  //     courseCode: "CS101",
+  //     courseName: "컴퓨터공학",
+  //     classDevision: "1",
+  //     departmentName: "컴퓨터과학부",
+  //     grade: "3",
+  //     credit: 3,
+  //     courseDevision: "전공필수",
+  //     professorName: "홍길동",
+  //     courseDay: "월",
+  //     courseStartTime: "09:00",
+  //     courseEndTime: "10:30",
+  //     totalCapacity: "50"
+  //   },
+  //   {
+  //     courseCode: "CS102",
+  //     courseName: "자료구조",
+  //     classDevision: "2",
+  //     departmentName: "컴퓨터과학부",
+  //     grade: "2",
+  //     credit: 3,
+  //     courseDevision: "전공선택",
+  //     professorName: "이몽룡",
+  //     courseDay: "화",
+  //     courseStartTime: "10:00",
+  //     courseEndTime: "11:30",
+  //     totalCapacity: "40"
+  //   }
+  // ];
 
   return (
     <ThemeProvider theme={theme}>
@@ -272,7 +300,7 @@ const Index = () => {
                 color: "#ffffff",
                 height: 50,
                 mt: 5,
-                borderRadius: 3
+                borderRadius: 3,
               }}
             >
               조회하기
@@ -322,6 +350,7 @@ const Index = () => {
                           color="primary"
                           onClick={() => handleAddCourse(course)}
                           aria-label="add"
+                          sx={{ color: "background.default" }}
                         >
                           <SystemUpdateAltIcon />
                         </IconButton>
