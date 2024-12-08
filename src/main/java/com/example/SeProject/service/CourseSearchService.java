@@ -30,9 +30,10 @@ public class CourseSearchService {
         this.studentMapper = studentMapper;
     }
 
+
     public List<CourseDto> searchCourseList(CourseSearchCriteria criteria){
         String studentCode = criteria.getStudentCode();
-        criteria.setStudentDepartmentCode(studentMapper.getStudentDepartmentCode(studentCode));
+        //criteria.setStudentDepartmentCode(studentMapper.getStudentDepartmentCode(studentCode));
         List<CourseDto> courseList = courseSearchMapper.searchCourseList(criteria);
 
         if (courseList.isEmpty()) return courseList;

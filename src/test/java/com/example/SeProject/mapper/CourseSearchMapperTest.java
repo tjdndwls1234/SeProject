@@ -20,16 +20,16 @@ public class CourseSearchMapperTest {
     public void testSearchCourseList() {
         // SearchCriteria 객체 생성 및 필터 조건 설정
         CourseSearchCriteria criteria = new CourseSearchCriteria();
-        //criteria.setCourseDepartmentName("컴퓨터과학부");  // 예시: 컴퓨터 과학 학과
+        criteria.setCourseDepartmentName("컴퓨터과학부");  // 예시: 컴퓨터 과학 학과
         //criteria.setGrade("3");  // 예시: 2학년
         //criteria.setCourseDay("화");  // 예시: 월요일
         //criteria.setCourseStartTime("10:00");
-        criteria.setCourseKeyword("실습");
-        String courseCode = "000005";
+        //criteria.setCourseKeyword("실습");
+        //String courseCode = "000005";
 
         // CourseSearchMapper 호출하여 과목 검색
-        //List<CourseDto> courses = courseSearchMapper.searchCourseList(criteria);
-        List<CourseDto> courses = courseSearchMapper.searchCourse(courseCode);
+        List<CourseDto> courses = courseSearchMapper.searchCourseList(criteria);
+        //List<CourseDto> courses = courseSearchMapper.searchCourse(courseCode);
         // 결과 검증
         assertNotNull(courses);
 

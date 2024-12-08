@@ -30,8 +30,8 @@ public class MainPageController {
     @PostMapping("/MainPage/CourseSearch")
     public ResponseEntity<List<CourseDto>> searchCourseList(@RequestBody CourseSearchCriteria criteria, HttpServletRequest request) {
         //Call Session and Set StudentCode in criteria
-        HttpSession session = request.getSession(false);
-        criteria.setStudentCode((String)session.getAttribute("StudentCode"));
+        //HttpSession session = request.getSession(false);
+        //criteria.setStudentCode((String)session.getAttribute("StudentCode"));
 
         return ResponseEntity.ok().body(courseSearchService.searchCourseList(criteria));
     }
