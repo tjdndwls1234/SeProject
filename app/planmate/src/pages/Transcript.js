@@ -17,7 +17,7 @@ import {
     ThemeProvider,
     Typography,
 } from "@mui/material";
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import Header from "components/Header"
 import theme from "theme"
 
@@ -70,16 +70,49 @@ const TableBodyCell = ({ isLastColumn = false, children, sx = {}, ...props }) =>
         </TableCell >
     )
 }
+const TableFootCell = ({ isLastColumn = false, children, sx = {}, ...props }) => {
+    return (
+        <TableCell
+            sx={[{
+                textAlign: "left",
+                color: "black",
+                borderRight: isLastColumn ? "none" : "1px solid #aaa",
+            }, sx]}
+            {...props}
+        >
+            {children}
+        </TableCell>
+    )
+}
 
 const TableTextField = ({ ...props }) => {
     return (
         <TextField
             fullWidth
-            variant="filled"
             size="small"
             sx={{
+                border: "none",
+                background: "transparent",
                 "& .MuiInputBase-input": {
                     padding: "10px",
+                },
+                "& .MuiOutlinedInput-notchedOutline": {
+                    border: "none", // 테두리 없애기 (outlining 효과)
+                },
+            }}
+            {...props}
+        />
+    );
+}
+const TableSelect = ({ ...props }) => {
+    return (
+        <Select
+            fullWidth
+            sx={{
+                backgroundColor: "transparent",
+                border: "none",
+                "& .MuiOutlinedInput-notchedOutline": {
+                    border: "none", // 테두리 없애기 (outlining 효과)
                 },
             }}
             {...props}
@@ -93,6 +126,37 @@ const Screen = () => {
         { subject: "알고리즘", category: "전공선택", credits: 3, grade: 4.0 },
     ]);
 
+    const categories = ['전공필수', '전공선택', '교양필수', '교양선택', '일반선택']
+
+    const [student, setStudent] = useState({
+        studentName: "홍길동",
+        departmentName: "컴퓨터과학부",
+        departmentName: "컴퓨터과학부",
+        totalGrade: 3.5,
+        totalCredits: 91,
+        maxTotalCredits: 91,
+        majorGrade: 3.6,
+        majorCredits: 60,
+        maxMajorCredits: 72,
+        generalCredits: 31,
+        maxGeneralCredits: 36,
+    })
+
+    const id = "asdf"
+    useEffect(() => {
+        fetch(`/students/${id}`)
+            .then(response => {
+                if (!response.ok) {
+                    alert("서버 연결 실패")
+                }
+                else {
+                    return response.json();
+                }
+            })
+            .then(data => {
+            })
+    }, []);
+
     // 셀 내용 변경 핸들러
     const handleChange = (e, index, field) => {
         const updatedRows = [...rows];
@@ -103,9 +167,30 @@ const Screen = () => {
     const handleAddRow = () => {
         setRows([
             ...rows,
-            { subject: "", category: "", credits: "", grade: "" }, // 새로운 빈 행 추가
+            { subject: "", category: "", credits: 1, grade: 0 }, // 새로운 빈 행 추가
         ]);
     };
+    const handleClickSave = () => {
+        fetch('/ReportUpdate', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: rows
+        }).then(response => {
+            alert("저장되었습니다!")
+        })
+    };
+
+    const getTotalCredits = () => {
+        return rows.reduce((total, row) => total + row.credits, 0)
+    }
+    const getAverageGrade = () => {
+        const totalCredit = getTotalCredits()
+        const totalGrade = rows.reduce((total, row) => total + row.credits * row.grade, 0)
+        return totalGrade / totalCredit
+    }
+
     return (
         <ThemeProvider theme={theme}>
             <Box sx={{ minHeight: "100vh", bgcolor: "white" }}>
@@ -114,22 +199,22 @@ const Screen = () => {
                     <Stack spacing={4}>
                         <Box>
                             <Typography variant="h4" sx={{ fontWeight: "bold" }}>
-                                OOO님의 성적표
+                                {student.studentName}님의 성적표
                             </Typography>
                             <Typography variant="subtitle1" sx={{ color: "text.secondary" }}>
-                                컴퓨터과학부
+                                {student.departmentName}
                             </Typography>
                         </Box>
 
                         <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
                             <Box sx={{ display: "flex", gap: 6 }}>
-                                <ScoreCell title="전체 평점" current={3.5} max={4.5} />
-                                <ScoreCell title="취득 학점" current={90} max={130} />
+                                <ScoreCell title="전체 평점" current={student.totalGrade} max={4.5} />
+                                <ScoreCell title="취득 학점" current={student.totalCredits} max={student.maxTotalCredits} />
                             </Box>
                             <Box sx={{ display: "flex", gap: 6 }}>
-                                <ScoreCell title="전공 평점" current={3.5} max={4.5} />
-                                <ScoreCell title="전공 학점" current={60} max={72} />
-                                <ScoreCell title="교양 학점" current={30} max={36} />
+                                <ScoreCell title="전공 평점" current={student.majorGrade} max={4.5} />
+                                <ScoreCell title="전공 학점" current={student.majorCredits} max={student.maxMajorCredits} />
+                                <ScoreCell title="교양 학점" current={student.generalCredits} max={student.maxGeneralCredits} />
                             </Box>
                         </Box>
 
@@ -151,7 +236,10 @@ const Screen = () => {
                                         <MenuItem value="2024년 2학기">2024년 2학기</MenuItem>
                                     </Select>
                                 </Box>
-                                <Button variant="contained" sx={{ bgcolor: "background.default" }}>
+                                <Button
+                                    variant="contained"
+                                    sx={{ bgcolor: "background.default" }}
+                                    onClick={handleClickSave}>
                                     저장하기
                                 </Button>
                             </Box>
@@ -176,15 +264,31 @@ const Screen = () => {
                                                     />
                                                 </TableBodyCell>
                                                 <TableBodyCell>
-                                                    <TableTextField
-                                                        value={row.category}
+                                                    <TableSelect
+                                                        defaultValue={categories[0]}
+                                                        IconComponent={ArrowDropDownIcon}
+                                                        size="small"
                                                         onChange={(e) => handleChange(e, index, "category")}
-                                                    />
+                                                    >
+                                                        {categories.map((category, index) => (
+                                                            <MenuItem
+                                                                key={category}
+                                                                value={category}
+                                                            >
+                                                                {category}
+                                                            </MenuItem>
+                                                        ))}
+                                                    </TableSelect>
+
                                                 </TableBodyCell>
                                                 <TableBodyCell>
                                                     <TableTextField
                                                         type="number"
                                                         value={row.credits}
+                                                        inputProps={{
+                                                            min: 1,
+                                                            max: 6,
+                                                        }}
                                                         onChange={(e) => handleChange(e, index, "credits")}
                                                     />
                                                 </TableBodyCell>
@@ -209,10 +313,18 @@ const Screen = () => {
                                             </TableCell>
                                         </TableRow>
                                         <TableRow sx={{ bgcolor: "#dbdbdb" }}>
-                                            <TableCell>전체</TableCell>
-                                            <TableCell />
-                                            <TableCell>3</TableCell>
-                                            <TableCell>3.5</TableCell>
+                                            <TableFootCell>전체</TableFootCell>
+                                            <TableFootCell></TableFootCell>
+                                            <TableFootCell>
+                                                {
+                                                    getTotalCredits()
+                                                }
+                                            </TableFootCell>
+                                            <TableFootCell isLastColumn={true}>
+                                                {
+                                                    getAverageGrade().toFixed(2)
+                                                }
+                                            </TableFootCell>
                                         </TableRow>
                                     </TableBody>
                                 </Table>

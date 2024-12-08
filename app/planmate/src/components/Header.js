@@ -81,7 +81,7 @@ const Header = () => {
                         <Tab label="강의 조회" component={Link} to="/" />
                         <Tab label="선수/후수 과목 조회" component={Link} to="/prerequisite" />
                         <Tab label="나의 성적표" component={Link} to="/transcript" />
-                        <Tab label="로그아웃" component={Link} to="/transcript" />
+                        <Tab label="로그아웃" component={Link} to="/login" />
                     </MenuTabs>
                 </Toolbar>
             </AppBar>

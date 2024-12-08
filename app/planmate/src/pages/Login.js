@@ -9,9 +9,11 @@ import {
 } from '@mui/material';
 import React, { useState } from "react";
 import theme from 'theme';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Screen = () => {
+    const navigate = useNavigate()
+
     const [formData, setFormData] = useState({
         id: "",
         password: "",
@@ -34,8 +36,23 @@ const Screen = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (validate()) {
-            alert("로그인 되었습니다!");
-            console.log(formData);
+            fetch("/api/login", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id: formData.id, pw: formData.password }),
+            })
+                .then((response) => {
+                    if (!response.ok) {
+                        return {}
+                    }
+                    return response.json()
+                })
+                .then((data) => {
+                    localStorage.setItem("token", data.token);
+                    navigate('/')
+                })
         }
     };
 

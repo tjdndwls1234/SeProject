@@ -8,15 +8,9 @@ import {
     Typography,
     Autocomplete
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import theme from "theme";
-
-const departments = [
-    { id: 1, label: "컴퓨터과학부" },
-    { id: 2, label: "전기전자컴퓨터공학부" },
-    { id: 3, label: "기계공학과" },
-];
 
 const RegisterTextField = ({ ...props }) => {
     return (
@@ -31,6 +25,32 @@ const RegisterTextField = ({ ...props }) => {
 }
 const Content = () => {
     const navigate = useNavigate();
+
+    const [departments, setDepartments] = useState([
+        { id: 1, label: "컴퓨터과학부" },
+        { id: 2, label: "전기전자컴퓨터공학부" },
+        { id: 3, label: "기계공학과" },
+    ]);
+
+    useEffect(() => {
+        fetch('http://localhost:8080/api/departments')
+            .then(response => {
+                if (!response.ok) {
+                    alert("서버 연결 실패")
+                }
+                else {
+                    return response.json();
+                }
+            })
+            .then(data => {
+                const transformedData = data.map(department => ({
+                    id: department.departmentCode,
+                    label: department.departmentName
+                }));
+                setDepartments(transformedData);
+            })
+    }, []);
+
 
     const [formData, setFormData] = useState({
         id: "",
@@ -47,7 +67,6 @@ const Content = () => {
     };
 
     const handleDepartmentChange = (e, department) => {
-
         const value = department ? department.id : null
         setFormData({ ...formData, ["departmentId"]: value });
     }
@@ -70,14 +89,29 @@ const Content = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (validate()) {
-            fetch("/api/signup")
-                .then((response) => {
-                    if (!response.ok) {
-                        throw new Error("Network response was not ok");
-                    }
+            fetch("http://localhost:8080/api/signup", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    studentCode: "",
+                    studentName: formData.name,
+                    departmentCode: formData.departmentId,
+                    departmentName: formData.departmentName,
+                    id: formData.id,
+                    pw: formData.password
+                }),
+            }).then((response) => {
+                if (!response.ok) {
+                    console.log(response)
+                    alert(response.body)
+                }
+                else {
                     alert("가입이 완료되었습니다!");
                     navigate('/login')
-                })
+                }
+            })
         }
     };
 
