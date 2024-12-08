@@ -70,11 +70,13 @@ const Index = () => {
   const [courses, setCourses] = useState([]);
   const [formData, setFormData] = useState({
     studentCode: "",
+    studentDepartmentCode: "",
+    courseKeyword: "",
     courseDepartmentName: "",
-    studentDepartmentName: "",
+    courseDevision:"",
     grade: "",
-    courseDay: "",
     courseStartTime: "",
+    courseDay: "",
     isCourseEngineeringCertified: false,
     isCourseProhibit: false,
     isRetakeableCourse: false,
@@ -152,7 +154,7 @@ const Index = () => {
               options={departments}
               sx={{ width: 150 }}
               onChange={(e, value) =>
-                handleChange("courseDepartmentName", value?.label || "")
+                handleChange("studentDepartmentCode", value?.label || "")
               }
               size="small"
               renderInput={(params) => <TextField {...params} label="학부/과" />}
