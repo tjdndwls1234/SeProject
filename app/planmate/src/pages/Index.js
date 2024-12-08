@@ -186,7 +186,7 @@ const Index = () => {
               renderInput={(params) => <TextField {...params} label="시간" />}
             />
           </Box>
-
+          
           <FormGroup sx={{ display: "flex", flexDirection: "row", mt: 2 }}>
             <FormControlLabel
               control={
