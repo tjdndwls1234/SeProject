@@ -212,68 +212,72 @@ const Index = () => {
             />
           </Box>
           
-          <FormGroup sx={{ display: "flex", flexDirection: "row", mt: 2 }}>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={formData.isCourseEngineeringCertified}
-                  onChange={(e) =>
-                    handleChange("isCourseEngineeringCertified", e.target.checked)
+          <Box sx={{ width: 900, display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
+            <Box>
+              <FormGroup sx={{ display: "flex", flexDirection: "row", mt: 2 }}>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={formData.isCourseEngineeringCertified}
+                      onChange={(e) =>
+                        handleChange("isCourseEngineeringCertified", e.target.checked)
+                      }
+                    />
                   }
+                  label="공학 인증 과목만 보기"
                 />
-              }
-              label="공학 인증 과목만 보기"
-            />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={formData.isRetakeableCourse}
-                  onChange={(e) =>
-                    handleChange("isRetakeableCourse", e.target.checked)
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={formData.isRetakeableCourse}
+                      onChange={(e) =>
+                        handleChange("isRetakeableCourse", e.target.checked)
+                      }
+                    />
                   }
+                  label="재수강 가능 과목만 보기"
                 />
-              }
-              label="재수강 가능 과목만 보기"
-            />
-          </FormGroup>
+              </FormGroup>
 
-          <FormGroup sx={{ display: "flex", flexDirection: "row" }}>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={formData.isCourseProhibit}
-                  onChange={(e) =>
-                    handleChange("isCourseProhibit", e.target.checked)
+              <FormGroup sx={{ display: "flex", flexDirection: "row" }}>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={formData.isCourseProhibit}
+                      onChange={(e) =>
+                        handleChange("isCourseProhibit", e.target.checked)
+                      }
+                    />
                   }
+                  label="수강 금지 과목 제외"
                 />
-              }
-              label="수강 금지 과목 제외"
-            />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={formData.isScheduleConflict}
-                  onChange={(e) =>
-                    handleChange("isScheduleConflict", e.target.checked)
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={formData.isScheduleConflict}
+                      onChange={(e) =>
+                        handleChange("isScheduleConflict", e.target.checked)
+                      }
+                    />
                   }
+                  label="시간이 겹치는 과목 제외"
                 />
-              }
-              label="시간이 겹치는 과목 제외"
-            />
-          </FormGroup>
-
-          <Button
-            variant="contained"
-            onClick={handleSearch}
-            sx={{
-              bgcolor: "background.default",
-              color: "#ffffff",
-              height: 50,
-              mt: 2,
-            }}
-          >
-            조회
-          </Button>
+              </FormGroup>
+            </Box>
+            <Button
+              variant="contained"
+              onClick={handleSearch}
+              sx={{
+                bgcolor: "background.default",
+                color: "#ffffff",
+                height: 50,
+                mt: 5,
+                borderRadius: 3
+              }}
+            >
+              조회하기
+            </Button>
+          </Box>
 
           <TableContainer component={Paper} sx={{ width: 900, mt: 4 }}>
             <Table aria-label="simple table">
