@@ -222,7 +222,7 @@ const Index = () => {
                   }
                 />
               }
-              label="수강 금지 과목 조회"
+              label="수강 금지 과목 제외"
             />
             <FormControlLabel
               control={
