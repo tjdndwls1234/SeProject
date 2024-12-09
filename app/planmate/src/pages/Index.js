@@ -115,7 +115,7 @@ const Index = () => {
   };
 
   const handleChange = (field, value) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
+    setFormData({ ...formData, [field]: value });
   };
 
   const handleAddCourse = (course) => {
@@ -239,7 +239,7 @@ const Index = () => {
               renderInput={(params) => <TextField {...params} label="시간" />}
             />
           </Box>
-          
+
           <Box sx={{ width: 900, display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
             <Box>
               <FormGroup sx={{ display: "flex", flexDirection: "row", mt: 2 }}>
@@ -376,7 +376,7 @@ const Index = () => {
                     <TableCell align="right">{course.courseDay}</TableCell>
                     <TableCell align="right">{course.courseStartTime}</TableCell>
                     <TableCell align="right">{course.totalCapacity}</TableCell> */}
-                    {/* <TableCell>{course.courseName}</TableCell>
+              {/* <TableCell>{course.courseName}</TableCell>
                     <TableCell align="right">{course.section}</TableCell>
                     <TableCell align="right">{course.department}</TableCell>
                     <TableCell align="right">{course.grade}</TableCell>
@@ -385,13 +385,13 @@ const Index = () => {
                     <TableCell align="right">{course.professor}</TableCell>
                     <TableCell align="right">{course.schedule}</TableCell>
                     <TableCell align="right">{course.capacity}</TableCell> */}
-                  {/* </TableRow>
+              {/* </TableRow>
                 ))}
               </TableBody> */}
             </Table>
           </TableContainer>
 
-        {/* <div
+          {/* <div
           style={{
             height: "500px",
             border: "1px solid black",
