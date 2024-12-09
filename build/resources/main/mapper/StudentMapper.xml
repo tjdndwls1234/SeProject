@@ -36,9 +36,9 @@
     </select>
 
     <!-- 회원가입: Student 테이블에 데이터 삽입-->
-    <insert id="insertStudent" >
+    <insert id="insertStudent">
         INSERT INTO STUDENT (STUDENT_CODE, STUDENT_NAME, DEPARTMENT_CODE, ID, PASSWORD)
-        VALUES (#{studentSignUpDto.studentCode}, #{studentSignUpDto.studentName}, #{departmentCode}, #{studentSignUpDto.id}, #{studentSignUpDto.pw})
+        VALUES (#{studentCode}, #{studentName}, #{departmentCode}, #{id}, #{pw})
     </insert>
 
     <!-- 로그인: Student 테이블에서 ID,PW가 일치하는 사둉자 조회-->
@@ -58,5 +58,9 @@
 
     <select id="getStudentDepartmentCode" parameterType="String" resultType="String">
         SELECT DEPARTMENT_CODE FROM STUDENT WHERE STUDENT_CODE = #{studentCode}
+    </select>
+
+    <select id="getStudentCode" parameterType="String" resultType="String">
+        SELECT STUDENT_CODE FROM STUDENT WHERE ID = #{id}
     </select>
 </mapper>

@@ -47,7 +47,6 @@ public class CourseSearchService {
                 courseList.removeIf(course -> retakeableCourseList.contains(course.getCourseCode()));
             }
         }
-
         //시간표 겹치는 과목 필터링
         if (criteria.isScheduleConflict()){
             List<StudentScheduleDto> courseListOnTimetable = studentScheduleMapper.getTimetable(criteria.getStudentCode());

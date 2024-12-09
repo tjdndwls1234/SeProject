@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RequestMapping("/api/signup")
+@RequestMapping
 @RequiredArgsConstructor
 @RestController
 public class SignUpController {
@@ -18,7 +18,7 @@ public class SignUpController {
     private final SignUpService signUpService;
 
     //회원가입
-    @PostMapping
+    @PostMapping("/api/signup")
     public ResponseEntity<String> signUp(@RequestBody StudentSignUpDto studentSignUpDto) {
         System.out.println(studentSignUpDto.getDepartmentCode());
         String result = signUpService.signUp(studentSignUpDto);

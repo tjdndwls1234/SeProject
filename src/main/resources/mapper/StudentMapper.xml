@@ -59,4 +59,8 @@
     <select id="getStudentDepartmentCode" parameterType="String" resultType="String">
         SELECT DEPARTMENT_CODE FROM STUDENT WHERE STUDENT_CODE = #{studentCode}
     </select>
+
+    <select id="getStudentCode" parameterType="String" resultType="String">
+        SELECT STUDENT_CODE FROM STUDENT WHERE ID = #{id}
+    </select>
 </mapper>

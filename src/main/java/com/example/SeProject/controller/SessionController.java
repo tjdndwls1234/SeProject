@@ -6,14 +6,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RequestMapping
 @RestController
 public class SessionController {
 
     @GetMapping("/api/SessionCheck")
-    public ResponseEntity<String> checkSession(HttpSession session) {
+    public ResponseEntity<Map<String, String>> checkSession(HttpSession session) {
+        Map<String, String> response = new HashMap<>();
         if (session == null || session.getId() == null)
-            return ResponseEntity.ok("No session");
-        return ResponseEntity.ok("Yes session");
+            response.put("sessionStatus", "No session");
+        else response.put("sessionStatus", "Yes session");
+
+        return ResponseEntity.ok(response);
     }
 }

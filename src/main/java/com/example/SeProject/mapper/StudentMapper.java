@@ -24,4 +24,6 @@ public interface StudentMapper {
 
     //studentCode로 studentDepartmentCode
     String getStudentDepartmentCode(String studentCode);
+
+    String getStudentCode(String id);
 }
