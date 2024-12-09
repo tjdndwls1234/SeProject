@@ -59,7 +59,12 @@
         AND c_p.COURSE_ENGINEERING_CERTIFIED = 'Y'
         </if>
         <if test="isCourseProhibit == true">
-        AND c_p.DEPARTMENT_CODE != #{studentDepartmentCode}
+        AND NOT EXISTS (
+            SELECT 1
+            FROM COURSE_PROHIBIT c_ph
+            WHERE c_ph.COURSE_CODE = c.COURSE_CODE
+            AND c_ph.DEPARTMENT_CODE = #{studentDepartmentCode}
+            )
         </if>
     </select>
     <select id="searchCourse" parameterType="String"

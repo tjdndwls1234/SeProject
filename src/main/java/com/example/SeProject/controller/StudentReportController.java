@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-@RequestMapping("/Report")
+@RequestMapping
 @RestController
 public class StudentReportController {
     public StudentReportService studentReportService;
@@ -20,7 +20,7 @@ public class StudentReportController {
         this.studentReportService = studentReportService;
     }
 
-    @PostMapping("/ReportUpdate")
+    @PostMapping("/Report/getReport")
     public ResponseEntity<List<StudentReportDto>> studentReport(HttpServletRequest request) {
         String studentCode = request.getParameter("studentCode");
 

@@ -1,5 +1,6 @@
 package com.example.SeProject.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,9 +15,10 @@ import java.util.Map;
 public class SessionController {
 
     @GetMapping("/api/SessionCheck")
-    public ResponseEntity<Map<String, String>> checkSession(HttpSession session) {
+    public ResponseEntity<Map<String, String>> checkSession(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
         Map<String, String> response = new HashMap<>();
-        if (session == null || session.getId() == null)
+        if (session == null || (session.getAttribute("StudentCode") == null))
             response.put("sessionStatus", "No session");
         else response.put("sessionStatus", "Yes session");
 
