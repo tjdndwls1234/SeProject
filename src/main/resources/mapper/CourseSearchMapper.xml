@@ -56,7 +56,7 @@
         AND c_s.COURSE_START_TIME = #{courseStartTime}
         </if>
         <if test="isCourseEngineeringCertified == true">
-        AND c.COURSE_ENGINEERING_CERTIFIED = 'Y'
+        AND c_p.COURSE_ENGINEERING_CERTIFIED = 'Y'
         </if>
         <if test="isCourseProhibit == true">
         AND c_p.DEPARTMENT_CODE != #{studentDepartmentCode}

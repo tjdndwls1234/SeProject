@@ -33,7 +33,7 @@ public class CourseSearchService {
 
     public List<CourseDto> searchCourseList(CourseSearchCriteria criteria){
         String studentCode = criteria.getStudentCode();
-        //criteria.setStudentDepartmentCode(studentMapper.getStudentDepartmentCode(studentCode));
+        criteria.setStudentDepartmentCode(studentMapper.getStudentDepartmentCode(studentCode));
         List<CourseDto> courseList = courseSearchMapper.searchCourseList(criteria);
 
         if (courseList.isEmpty()) return courseList;
@@ -44,7 +44,7 @@ public class CourseSearchService {
 
             if (!retakeableCourseList.isEmpty()) {
 
-                courseList.removeIf(course -> retakeableCourseList.contains(course.getCourseCode()));
+                courseList.removeIf(course -> !retakeableCourseList.contains(course.getCourseCode()));
             }
         }
         //시간표 겹치는 과목 필터링

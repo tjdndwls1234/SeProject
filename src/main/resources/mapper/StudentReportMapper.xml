@@ -19,9 +19,9 @@
     <select id="retakeableCourseListSearch" parameterType="String"
             resultType="String">
         SELECT COURSE_CODE
-        FROM STUDENT_TABLE s_t
-        WHERE s_t.STUDENT_CODE = #{studentCode}
-            AND s_t.COURSE_REPORT = '2.5' AND s_t.COURSE_REPORT = '2.0' AND s_t.COURSE_REPORT ='1.5'
-            AND s_t.COURSE_REPORT = '1.0' AND s_t.COURSE_REPORT = '0.0'
+        FROM STUDENT_REPORT s_r
+        WHERE s_r.STUDENT_CODE = #{studentCode}
+            AND (s_r.COURSE_REPORT = '2.5' OR s_r.COURSE_REPORT = '2.0' OR s_r.COURSE_REPORT ='1.5'
+            OR s_r.COURSE_REPORT = '1.0' OR s_r.COURSE_REPORT = '0.0')
     </select>
 </mapper>

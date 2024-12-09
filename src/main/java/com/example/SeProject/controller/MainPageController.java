@@ -32,7 +32,6 @@ public class MainPageController {
         //Call Session and Set StudentCode in criteria
         HttpSession session = request.getSession(false);
         criteria.setStudentCode((String)session.getAttribute("StudentCode"));
-        System.out.println(criteria.isScheduleConflict());
         return ResponseEntity.ok().body(courseSearchService.searchCourseList(criteria));
     }
 
