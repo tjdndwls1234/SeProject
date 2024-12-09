@@ -79,9 +79,43 @@ const hours = [
 ];
 
 const Index = () => {
-  const [courses, setCourses] = useState([]);
+  const [courses, setCourses] = useState([
+    // {
+    //   courseCode: "CS101",
+    //   courseName: "컴퓨터공학",
+    //   classDevision: "1",
+    //   departmentName: "컴퓨터과학부",
+    //   grade: "3",
+    //   credit: 3,
+    //   courseDevision: "전공필수",
+    //   professorName: "홍길동",
+    //   courseDay: "월",
+    //   courseStartTime: "09:00",
+    //   courseEndTime: "10:30",
+    //   totalCapacity: "50"
+    // },
+    // {
+    //   courseCode: "CS102",
+    //   courseName: "자료구조",
+    //   classDevision: "2",
+    //   departmentName: "컴퓨터과학부",
+    //   grade: "2",
+    //   credit: 3,
+    //   courseDevision: "전공선택",
+    //   professorName: "이몽룡",
+    //   courseDay: "화",
+    //   courseStartTime: "10:00",
+    //   courseEndTime: "11:30",
+    //   totalCapacity: "40"
+    // }
+  ]
+  );
+
+  const [studentCode, setStudentCode] = useState(() => {
+    const saved = localStorage.getItem("studentCode")
+    return saved ? saved : "0"
+  })
   const [formData, setFormData] = useState({
-    studentCode: null,
     studentDepartmentCode: null,
     courseKeyword: null,
     courseDepartmentName: null,
@@ -119,40 +153,24 @@ const Index = () => {
   };
 
   const handleAddCourse = (course) => {
-    console.log("담은 강의:", course);
+    fetch("/CourseAdd", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        studentCode: studentCode,
+        courseCode: course.courseCode
+      }),
+    }).then((response => {
+      if (!response.ok) {
+        alert("시간표 저장에 실패했습니다.")
+      }
+      else {
+        alert("시간표에 저장되었습니다.")
+      }
+    }))
   };
-
-  // 테스트용 JSON
-  // const courses = [
-  //   {
-  //     courseCode: "CS101",
-  //     courseName: "컴퓨터공학",
-  //     classDevision: "1",
-  //     departmentName: "컴퓨터과학부",
-  //     grade: "3",
-  //     credit: 3,
-  //     courseDevision: "전공필수",
-  //     professorName: "홍길동",
-  //     courseDay: "월",
-  //     courseStartTime: "09:00",
-  //     courseEndTime: "10:30",
-  //     totalCapacity: "50"
-  //   },
-  //   {
-  //     courseCode: "CS102",
-  //     courseName: "자료구조",
-  //     classDevision: "2",
-  //     departmentName: "컴퓨터과학부",
-  //     grade: "2",
-  //     credit: 3,
-  //     courseDevision: "전공선택",
-  //     professorName: "이몽룡",
-  //     courseDay: "화",
-  //     courseStartTime: "10:00",
-  //     courseEndTime: "11:30",
-  //     totalCapacity: "40"
-  //   }
-  // ];
 
   return (
     <ThemeProvider theme={theme}>

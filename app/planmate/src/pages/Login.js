@@ -51,6 +51,7 @@ const Screen = () => {
                 })
                 .then((data) => {
                     localStorage.setItem("token", data.token);
+                    localStorage.setItem("studentCode", data.studentCode);
                     navigate('/')
                 })
         }
