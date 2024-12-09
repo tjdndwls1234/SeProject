@@ -20,6 +20,7 @@ import {
 import { React, useState, useEffect } from "react";
 import Header from "components/Header"
 import theme from "theme"
+import {useNavigate} from "react-router-dom";
 
 const ScoreCell = ({ title, current, max }) => {
     return (
@@ -121,6 +122,7 @@ const TableSelect = ({ ...props }) => {
 }
 
 const Screen = () => {
+    const navigate = useNavigate();
     const [rows, setRows] = useState([
         { subject: "소프트웨어공학", category: "전공필수", credits: 3, grade: 3.5 },
         { subject: "알고리즘", category: "전공선택", credits: 3, grade: 4.0 },
@@ -131,7 +133,6 @@ const Screen = () => {
     const [student, setStudent] = useState({
         studentName: "홍길동",
         departmentName: "컴퓨터과학부",
-        departmentName: "컴퓨터과학부",
         totalGrade: 3.5,
         totalCredits: 91,
         maxTotalCredits: 91,
@@ -141,21 +142,30 @@ const Screen = () => {
         generalCredits: 31,
         maxGeneralCredits: 36,
     })
-
-    const id = "asdf"
     useEffect(() => {
-        fetch(`/students/${id}`)
-            .then(response => {
+        // 서버에서 리포트 데이터를 받아오는 fetch 요청
+        fetch("/Report/getReport")
+            .then((response) => {
                 if (!response.ok) {
-                    alert("서버 연결 실패")
+                    throw new Error("서버에서 데이터를 받아오지 못했습니다.");
                 }
-                else {
-                    return response.json();
-                }
+                return response.json();
             })
-            .then(data => {
+            .then((data) => {
+                // 받아온 데이터를 rows 상태에 업데이트
+                const transformedRows = data.map((item) => ({
+                    subject: item.courseName,
+                    category: item.courseDevision,
+                    credits: item.credit,
+                    grade: item.courseReport,
+                }));
+                setRows(transformedRows);  // 상태 업데이트
             })
-    }, []);
+            .catch((error) => {
+                console.error("Error fetching student report:", error);
+                // 로그인 페이지로 리디렉션하거나, 에러 메시지를 표시할 수 있습니다.
+            });
+    }, [navigate]);
 
     // 셀 내용 변경 핸들러
     const handleChange = (e, index, field) => {
@@ -296,6 +306,11 @@ const Screen = () => {
                                                     <TableTextField
                                                         type="number"
                                                         value={row.grade}
+                                                        inputProps={{
+                                                            min: 0,
+                                                            max: 4.5,
+                                                            step: 0.5,
+                                                        }}
                                                         onChange={(e) => handleChange(e, index, "grade")}
                                                     />
                                                 </TableBodyCell>

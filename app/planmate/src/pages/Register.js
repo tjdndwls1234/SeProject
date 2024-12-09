@@ -27,16 +27,16 @@ const Content = () => {
     const navigate = useNavigate();
 
     const [departments, setDepartments] = useState([
-        { id: 1, label: "컴퓨터과학부" },
-        { id: 2, label: "전기전자컴퓨터공학부" },
-        { id: 3, label: "기계공학과" },
+       // { id: 1, label: "컴퓨터과학부" },
+        //{ id: 2, label: "전기전자컴퓨터공학부" },
+        //{ id: 3, label: "기계공학과" },
     ]);
 
     useEffect(() => {
-        fetch('http://localhost:8080/api/departments')
+        fetch('/api/departments')
             .then(response => {
                 if (!response.ok) {
-                    alert("서버 연결 실패")
+                    navigate("/login");
                 }
                 else {
                     return response.json();
@@ -88,14 +88,15 @@ const Content = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log("Selected Department ID:", formData.departmentId);
         if (validate()) {
-            fetch("http://localhost:8080/api/signup", {
+            fetch("/api/signup", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    studentCode: "",
+                    studentCode: null,
                     studentName: formData.name,
                     departmentCode: formData.departmentId,
                     departmentName: formData.departmentName,
@@ -103,12 +104,16 @@ const Content = () => {
                     pw: formData.password
                 }),
             }).then((response) => {
-                if (!response.ok) {
-                    console.log(response)
-                    alert(response.body)
+                if (response.ok) {
+                    if (response.text() === "Sign Up Success"){
+                        alert(response.text());
+                        navigate('/login');
+                    }
+                    else
+                        alert(response.text());
                 }
                 else {
-                    alert("가입이 완료되었습니다!");
+                    alert("서버 오류입니다.");
                     navigate('/login')
                 }
             })

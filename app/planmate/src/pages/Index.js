@@ -27,8 +27,8 @@ import SystemUpdateAltIcon from "@mui/icons-material/SystemUpdateAlt";
 // import TaskListItem from "react-custom-timetable";
 
 
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import theme from "theme";
 
 import Header from "../components/Header";
@@ -79,6 +79,8 @@ const hours = [
 ];
 
 const Index = () => {
+  const navigate = useNavigate();
+
   const [courses, setCourses] = useState([
     // {
     //   courseCode: "CS101",
@@ -110,11 +112,25 @@ const Index = () => {
     // }
   ]
   );
+  useEffect(() => {
+    // 세션 체크를 위한 API 호출
+    fetch("/api/SessionCheck")
+        .then(response => response.text()) // 서버의 응답을 JSON 형식으로 받기
+        .then(data => {
+          console.log(data);
+          if (data.sessionStatus === "No session") {
+            console.log("No session, redirecting to login...");
+            // 세션이 없다면 /login으로 리디렉션
+            navigate("/login");
+          }
+          // 세션이 있으면 아무것도 하지 않고 페이지 렌더링 유지
+        })
+        .catch(error => {
+          console.error("Error checking session:", error);
+          navigate("/login");  // 오류 발생 시 로그인 페이지로 리디렉션
+        });
+  }, [navigate]);
 
-  const [studentCode, setStudentCode] = useState(() => {
-    const saved = localStorage.getItem("studentCode")
-    return saved ? saved : "0"
-  })
   const [formData, setFormData] = useState({
     studentDepartmentCode: null,
     courseKeyword: null,
@@ -159,7 +175,6 @@ const Index = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        studentCode: studentCode,
         courseCode: course.courseCode
       }),
     }).then((response => {

@@ -7,12 +7,25 @@ import {
     TextField,
     Typography,
 } from '@mui/material';
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import theme from 'theme';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Screen = () => {
     const navigate = useNavigate()
+
+    useEffect(() => {
+        // 세션 체크를 위한 API 호출
+        fetch("/api/SessionCheck")
+            .then(response => response.text()) // 서버의 응답을 JSON 형식으로 받기
+            .then(data => {
+                if (data.sessionStatus === "Yes Session") {
+                    // 세션이 없다면 /으로 리디렉션
+                    navigate("/");
+                }
+                // 세션이 있으면 아무것도 하지 않고 페이지 렌더링 유지
+            })
+    }, [navigate]);
 
     const [formData, setFormData] = useState({
         id: "",
@@ -41,22 +54,30 @@ const Screen = () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ id: formData.id, pw: formData.password }),
+                body: JSON.stringify({id: formData.id, pw: formData.password}),
             })
                 .then((response) => {
                     if (!response.ok) {
-                        return {}
+                        return alert("Login Failed");
+                    } else {
+                        return response.text().then((message) => {
+                            console.log(message)
+                            if (message === "Login Success") {
+                                alert(message);
+                                navigate('/');
+                            } else {
+                                throw new Error("Unexpected response from server.");
+                            }
+                        });
                     }
-                    return response.json()
                 })
-                .then((data) => {
-                    localStorage.setItem("token", data.token);
-                    localStorage.setItem("studentCode", data.studentCode);
-                    navigate('/')
+                .then((message) => {
                 })
+                .catch((error) => {
+                    setErrors({ general: error.message || "로그인 중 오류가 발생했습니다."}) // 로그인 실패 시 오류 메시지 설정
+                });
         }
-    };
-
+    }
 
     return (
         <ThemeProvider theme={theme}>

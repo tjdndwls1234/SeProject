@@ -77,7 +77,7 @@ const Screen = () => {
     ])
 
     useEffect(() => {
-        fetch('/departments')
+        fetch('/api/departments')
             .then(response => {
                 if (!response.ok) {
                     alert("서버 연결 실패")
