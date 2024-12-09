@@ -12,8 +12,8 @@ public interface StudentMapper {
     //SignUp
     int checkDuplicateId(String id);    //아이디 중복 확인
     String getMaxStudentCode();    //임의 학번
-    void insertStudent(@Param("studentSignUpDto") StudentSignUpDto studentSignUpDto,
-                       @Param("departmentCode") String departmentCode);    //회원가입
+
+    void insertStudent(StudentSignUpDto studentSignUpDto);    //회원가입
 
     //Login
     StudentSignUpDto logIn(String id, String pw);

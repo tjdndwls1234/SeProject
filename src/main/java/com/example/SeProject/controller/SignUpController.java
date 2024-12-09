@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RequestMapping("/signup")
+@RequestMapping("/api/signup")
 @RequiredArgsConstructor
 @RestController
 public class SignUpController {
@@ -20,9 +20,10 @@ public class SignUpController {
     //회원가입
     @PostMapping
     public ResponseEntity<String> signUp(@RequestBody StudentSignUpDto studentSignUpDto) {
+        System.out.println(studentSignUpDto.getDepartmentCode());
         String result = signUpService.signUp(studentSignUpDto);
         if ("중복되는 아이디입니다.".equals(result)) {
-            return ResponseEntity.badRequest().body("중복되는 아이디입니다.");
+            return ResponseEntity.ok().body("중복되는 아이디입니다.");
         }
         return ResponseEntity.ok("Sign Up Success");
     }
