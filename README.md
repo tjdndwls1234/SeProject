@@ -1,6 +1,7 @@
 # Planmate
 
 ## Proejct Scope
+Project Scope: 서울시립대학교 컴퓨터과학부 2024년 소프트웨어공학 프로젝트로, Software Development Life-Cycle 을 기반으로 객체지향 소프트웨어공학 방법론을 적용하여 <<수강신청 도우미>> 개발   
 
 ## Project Duration
 
@@ -25,22 +26,30 @@
    - 전체 평점, 취득 학점, 전공 평점, 전공 학점, 교양 학점 표출
 - [Demo Video (Playable)](./artifacts/Demo%20Video.mp4)
 
+<br/>
+
 ## Project Constraints
 본 서비스의 제약사항은 다음과 같다.
 
 보안 및 학사규정 등의 이유로 수강신청 기능 그 자체를 구현하지는 않았다. 본 서비스는 사용자가 수강신청을 계획하고 준비하는 과정에서의 어려움을 해결하는데 그 중점을 둔다. 이에 사용되는 학사 DB는 서울시립대학교 대학행정정보시스템이 제공하는 강좌 정보를 바탕으로 구성하였다.   
 서울시립대학교 대학행정정보시스템이 자체적으로 제공하고 있는 기능은 구현하지 않았다. 그 예시로는 졸업요건을 충족하기 위해 수강해야 하는 영역별 학점 수를 조회하는 기능 등이 있다. 본 서비스는 대학행정정보시스템에 구현되어 있지 않으나, 사용자의 수강신청에의 편의를 위해 필요한 기능에 초점을 맞춘다. 또한 구현의 난도와 주어진 개발 기간을 고려하여, 학생의 시간표를 가시적으로 표출하는 기능을 구현하지 않았다.
 
+<br/>
+
 ## High-Level Architecture
 본 서비스의 아키텍처는 MVC 아키텍처에 Service Layer를 추가하여 구축하였다.   
 
 ![Architecture Diagram](./artifacts/Architecture.png)
+
+<br/>
 
 ## Technology stacks
 
 - Front-end: react(18.3.1), mui(6.1.9)
 - Back-end: Java Spring
 - DB: Oracle
+
+<br/>
 
 ## Project Deliverables
 
@@ -50,6 +59,8 @@
 - UI Design Diagram(Figma): [링크](/artifacts/수강신청%20도우미%20UI%20Design%20Diagram.fig)
 - Coding Standard: [링크](/artifacts/srs-수강신청도우미-Coding%20standard.docx)
 
+<br/>
+
 ### Branch Description
 
 - `main`: 최종 코드와 산출물이 모두 포함된 브랜치
@@ -58,6 +69,8 @@
 - `feature-frontend`: 프론트엔드 개발을 위한 브랜치
 - `back-end`: 백엔드와 db 연결 및 강의 조회, 시간표 등의 기능 개발을 위한 브랜치
 - `real_final`: 최종 시연을 위한 테스트 및 버그 수정을 위한 브랜치
+
+<br/>
 
 ### Code Documentation
 
@@ -73,9 +86,15 @@
 - `/pages/Index.js`: 강의 조회 페이지를 구현한 코드이다. 유저가 조회 버튼을 누르면 필터에 설정된 값으로 서버에게 강의 리스트를 요청해 테이블 형태로 보여준다. 유저가 특정 강의에 대해 시간표에 담기 버튼을 누르면 서버에 요청을 보내 유저의 시간표에 추가한다.
 - `/components/Header.js`: 강의 조회, 선수/후수 과목 조회, 성적표 페이지에서 사용되는 헤더를 구현한 코드이다. 각 메뉴를 누르면 페이지를 이동할 수 있고, 현재 페이지는 메뉴에 파란색으로 강조 표시되도록 구현했다. 각 페이지에서는 `<Header />`를 추가하는 것으로 사용할 수 있다.
 
+<br/>
+
 #### Back-end
 
+<br/>
+
 ### Test Case and Result
+
+<br/>
 
 ## Repository Structure
 ／root-directory  
@@ -103,7 +122,7 @@
 │　　　　　　└── templates　　＃ Thymeleaf HTML 템플릿 파일  
 └── README．md　　　　　　　＃ 프로젝트 소개  
 
-
+<br/>
 
 ## Project Team Members (w/roles)
 
