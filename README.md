@@ -34,7 +34,7 @@
 ## High-Level Architecture
 <!--프로젝트의 주요 아키텍처 설명과 그림을 포함합니다.-->
 
-![Architecture Diagram](./artifacts/HighLevel_Architecture.png)
+![Architecture Diagram](./artifacts/Architecture.png)
 
 ## Technology stacks
 
