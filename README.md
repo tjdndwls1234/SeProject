@@ -43,7 +43,7 @@ Project Scope: 서울시립대학교 컴퓨터과학부 2024년 소프트웨어�
 ## High-Level Architecture
 본 서비스의 아키텍처는 MVC 아키텍처에 Service Layer를 추가하여 구축하였다.   
 
-![Architecture Diagram](./artifacts/Architecture.png)
+![Architecture Diagram](./reports/Architecture.png)
 
 <br/>
 
