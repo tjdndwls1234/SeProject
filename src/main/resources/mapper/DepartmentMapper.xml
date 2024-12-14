@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.SeProject.mapper.DepartmentMapper">
+
+    <resultMap id="DepartmentDto" type="com.example.SeProject.dto.DepartmentDto">
+        <result property="departmentCode" column="DEPARTMENT_CODE"/>
+        <result property="departmentName" column="DEPARTMENT_NAME"/>
+    </resultMap>
+
+    <!-- 학과 정보 조회 -->
+    <select id="getAllDepartments" resultMap="DepartmentDto">
+        SELECT DEPARTMENT_CODE, DEPARTMENT_NAME FROM DEPARTMENT
+        ORDER BY DEPARTMENT_NAME
+    </select>
+
+    <!-- 학과 이름으로 학과 코드 조회 -->
+    <select id="getDepartmentCode" parameterType="String" resultType="String">
+        SELECT DEPARTMENT_CODE FROM DEPARTMENT WHERE DEPARTMENT_NAME = #{departmentName}
+    </select>
+
+</mapper>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.SeProject.mapper.CourseSearchMapper">
+    <resultMap id="CourseDto" type="com.example.SeProject.dto.CourseDto">
+        <result property="courseCode" column="COURSE_CODE"/>
+        <result property="courseName" column="COURSE_NAME"/>
+        <result property="departmentName" column="DEPARTMENT_NAME"/>
+        <result property="grade" column="GRADE"/>
+        <result property="credit" column="CREDIT"/>
+        <result property="courseDevision" column="COURSE_DEVISION"/>
+        <result property="professorName" column="PROFESSOR_NAME"/>
+        <result property="courseDay" column="COURSE_DAY"/>
+        <result property="totalCapacity" column="TOTAL_CAPACITY"/>
+        <result property="courseStartTime" column="COURSE_START_TIME"/>
+        <result property="courseEndTime" column="COURSE_END_TIME"/>
+        <result property="classroom" column="CLASSROOM"/>
+    </resultMap>
+
+    <select id="searchCourseList" parameterType="com.example.SeProject.domain.CourseSearchCriteria"
+            resultType="com.example.SeProject.dto.CourseDto" resultMap="CourseDto">
+        SELECT c.COURSE_CODE AS COURSE_CODE,
+               c.COURSE_NAME AS COURSE_NAME,
+               c_s.CLASS_DEVISION AS CLASS_DEVISION,
+               d.DEPARTMENT_NAME AS DEPARTMENT_NAME,
+               c_p.GRADE AS GRADE,
+               c.CREDIT AS CREDIT,
+               c_p.COURSE_DEVISION AS COURSE_DEVISION,
+               p.PROFESSOR_NAME AS PROFESSOR_NAME,
+               c_s.COURSE_DAY AS COURSE_DAY,
+               c_s.COURSE_START_TIME AS COURSE_START_TIME,
+               c_s.COURSE_END_TIME AS COURSE_END_TIME,
+               c.TOTAL_CAPACITY AS TOTAL_CAPACITY
+        FROM COURSE c
+        JOIN COURSE_PROPERTY c_p ON c.COURSE_CODE = c_p.COURSE_CODE
+        JOIN COURSE_SCHEDULE c_s ON c.COURSE_CODE = c_s.COURSE_CODE
+        JOIN DEPARTMENT d ON c_p.DEPARTMENT_CODE = d.DEPARTMENT_CODE
+        JOIN PROFESSOR p ON c.PROFESSOR_CODE = p.PROFESSOR_CODE
+        WHERE 1 = 1
+        <if test="courseKeyword != null">
+        AND c.COURSE_NAME LIKE '%' || #{courseKeyword} || '%'
+        </if>
+        <if test="courseDepartmentName != null">
+        AND d.DEPARTMENT_NAME = #{courseDepartmentName}
+        </if>
+        <if test="courseDevision != null">
+        AND c_p.COURSE_DEVISION = #{courseDevision}
+        </if>
+        <if test="grade != null">
+        AND c_p.GRADE = #{grade}
+        </if>
+        <if test="courseDay != null">
+        AND c_s.COURSE_DAY = #{courseDay}
+        </if>
+        <if test="courseStartTime != null">
+        AND c_s.COURSE_START_TIME = #{courseStartTime}
+        </if>
+        <if test="isCourseEngineeringCertified == true">
+        AND c_p.COURSE_ENGINEERING_CERTIFIED = 'Y'
+        </if>
+        <if test="isCourseProhibit == true">
+        AND NOT EXISTS (
+            SELECT 1
+            FROM COURSE_PROHIBIT c_ph
+            WHERE c_ph.COURSE_CODE = c.COURSE_CODE
+            AND c_ph.DEPARTMENT_CODE = #{studentDepartmentCode}
+            )
+        </if>
+    </select>
+    <select id="searchCourse" parameterType="String"
+            resultType="com.example.SeProject.dto.CourseDto" resultMap="CourseDto">
+        SELECT c.COURSE_CODE AS COURSE_CODE,
+               c.COURSE_NAME AS COURSE_NAME,
+               c_s.CLASS_DEVISION AS CLASS_DEVISION,
+               d.DEPARTMENT_NAME AS DEPARTMENT_NAME,
+               c_p.GRADE AS GRADE,
+               c.CREDIT AS CREDIT,
+               c_p.COURSE_DEVISION AS COURSE_DEVISION,
+               p.PROFESSOR_NAME AS PROFESSOR_NAME,
+               c_s.COURSE_DAY AS COURSE_DAY,
+               c_s.COURSE_START_TIME AS COURSE_START_TIME,
+               c_s.COURSE_END_TIME AS COURSE_END_TIME,
+               c.TOTAL_CAPACITY AS TOTAL_CAPACITY
+        FROM COURSE c
+                 JOIN COURSE_PROPERTY c_p ON c.COURSE_CODE = c_p.COURSE_CODE
+                 JOIN COURSE_SCHEDULE c_s ON c.COURSE_CODE = c_s.COURSE_CODE
+                 JOIN DEPARTMENT d ON c_p.DEPARTMENT_CODE = d.DEPARTMENT_CODE
+                 JOIN PROFESSOR p ON c.PROFESSOR_CODE = p.PROFESSOR_CODE
+        WHERE c.COURSE_CODE = #{courseCode}
+    </select>
+
+</mapper>
