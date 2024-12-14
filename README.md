@@ -24,7 +24,7 @@ Project Scope: 서울시립대학교 컴퓨터과학부 2024년 소프트웨어�
 5. **나의 성적표 조회**
    - 나의 성적 등록
    - 전체 평점, 취득 학점, 전공 평점, 전공 학점, 교양 학점 표출
-- [Demo Video](![Demo_Video](https://github.com/user-attachments/assets/ddbf25ae-ccc8-4722-bca5-1f6f1eef9ffe))
+- ![Demo_Video](https://github.com/user-attachments/assets/4a3ef3b3-6df5-48c2-af24-795dce1840dd)
 
 <br/>
 
