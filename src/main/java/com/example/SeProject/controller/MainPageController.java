@@ -32,7 +32,6 @@ public class MainPageController {
         //Call Session and Set StudentCode in criteria
         HttpSession session = request.getSession(false);
         criteria.setStudentCode((String)session.getAttribute("StudentCode"));
-
         return ResponseEntity.ok().body(courseSearchService.searchCourseList(criteria));
     }
 
@@ -48,7 +47,7 @@ public class MainPageController {
     public ResponseEntity<String> addCourseToTimetable(@RequestBody TimetableEntry entry, HttpServletRequest request){
         HttpSession session = request.getSession(false);
         entry.setStudentCode((String)session.getAttribute("StudentCode"));
-
+        System.out.println(session.getAttribute("StudentCode"));
         return ResponseEntity.ok().body(timetableService.addCourseToTimetable(entry));
     }
 }

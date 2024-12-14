@@ -11,10 +11,11 @@
     <!-- 학과 정보 조회 -->
     <select id="getAllDepartments" resultMap="DepartmentDto">
         SELECT DEPARTMENT_CODE, DEPARTMENT_NAME FROM DEPARTMENT
+        ORDER BY DEPARTMENT_NAME
     </select>
 
     <!-- 학과 이름으로 학과 코드 조회 -->
-    <select id="getDepartmentCode" resultType="String">
+    <select id="getDepartmentCode" parameterType="String" resultType="String">
         SELECT DEPARTMENT_CODE FROM DEPARTMENT WHERE DEPARTMENT_NAME = #{departmentName}
     </select>
 

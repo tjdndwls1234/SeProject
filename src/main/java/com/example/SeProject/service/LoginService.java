@@ -34,6 +34,9 @@ public class LoginService {
             return "입력하신 아이디 또는 비밀번호가 올바르지 않습니다";
         }
     }
+    public String getStudentCode(String id){
+        return studentMapper.getStudentCode(id);
+    }
 
 
 }

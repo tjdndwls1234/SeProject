@@ -17,9 +17,4 @@ public class DepartmentService {
     public List<DepartmentDto> getAllDepartments() {
         return departmentMapper.getAllDepartments();
     }
-
-    //학과 이름 -> 학과 코드 변환
-    public String getDepartmentCode(String departmentName) {
-        return departmentMapper.getDepartmentCode(departmentName);
-    }
 }

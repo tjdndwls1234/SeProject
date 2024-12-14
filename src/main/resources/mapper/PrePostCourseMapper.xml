@@ -14,7 +14,7 @@
         <result property="postCourseTerm" column="POST_COURSE_TERM"/>
         <result property="postCourseCredit" column="POST_CREDIT"/>
     </resultMap>
-    <select id="getTimetable" parameterType="String"
+    <select id="getPrePostCourseList" parameterType="String"
             resultType="com.example.SeProject.dto.PrePostCourseDto" resultMap="PrePostCourseDto">
         SELECT c1.COURSE_NAME AS PRE_COURSE_NAME,
                c_p1.COURSE_DEVISION AS PRE_COURSE_DEVISION,

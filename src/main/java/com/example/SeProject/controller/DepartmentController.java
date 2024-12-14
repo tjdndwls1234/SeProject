@@ -11,7 +11,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/departments")
+@RequestMapping("/api/departments")
 public class DepartmentController {
 
     private final DepartmentService departmentService;
@@ -20,6 +20,6 @@ public class DepartmentController {
     @GetMapping
     public ResponseEntity<List<DepartmentDto>> getAllDepartments() {
         List<DepartmentDto> departmentList = departmentService.getAllDepartments();
-        return ResponseEntity.ok(departmentList);
+        return ResponseEntity.ok().body(departmentList);
     }
 }

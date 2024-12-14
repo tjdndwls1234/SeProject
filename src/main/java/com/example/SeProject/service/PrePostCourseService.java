@@ -17,6 +17,6 @@ public class PrePostCourseService {
     }
 
     public List<PrePostCourseDto> getPrePostCourseList(String departmentName){
-        return getPrePostCourseList(departmentName);
+        return prePostCourseMapper.getPrePostCourseList(departmentName);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.SeProject.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,8 +16,12 @@ public class CourseSearchCriteria {
     private String grade; // Front에서 입력받음
     private String courseStartTime; // Front에서 입력받음
     private String courseDay; // Front에서 입력받음
+    @JsonProperty("isCourseEngineeringCertified")
     private boolean isCourseEngineeringCertified; // Front에서 입력받음
+    @JsonProperty("isCourseProhibit")
     private boolean isCourseProhibit; // Front에서 입력받음
+    @JsonProperty("isRetakeableCourse")
     private boolean isRetakeableCourse; // Front에서 입력받음
+    @JsonProperty("isScheduleConflict")
     private boolean isScheduleConflict; // Front에서 입력받음
 }
