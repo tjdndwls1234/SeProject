@@ -78,28 +78,32 @@
 ### Test Case and Result
 
 ## Repository Structure
-/root-directory   
-　└─ /app/planmate                # 프론트엔드 소스코드   
-　   ├─ /public                   # 로고 및 아이콘 파일 저장   
-　   └─ /src                      # 프론트엔드 JavaScript 소스코드   
-  　    ├─ /components            # 공통 UI 컴포넌트(헤더) 관련 JavaScript 소스코드   
-    　  └─ /pages                 # 각 페이지 별 JavaScript 소스코드(로그인, 강의 조회 등)   
-　└─ /artifacts                   # 프로젝트 문서(요구사항 분석서 등)   
-　└─ /build                       # 빌드된 배포 파일   
-　└─ /gradle/wrapper              # Gradle 빌드 도구 설정 파일   
-　└─ /server                      # API 명세서 파일 저장   
-　└─ /src                         # 백엔드 소스코드   
-　　└─ /main                     # 메인 소스 디렉토리   
-　　　├─ /java/com/example/SeProject   # Java 패키지 디렉토리   
-　　　│  ├─ /controller         # 컨트롤러 클래스   
-　　　│  ├─ /domain             # 데이터베이스 엔터티 및 도메인 클래스   
-　　　│  ├─ /dto                # 데이터 전송 객체(DTO) 클래스   
-　　　│  ├─ /mapper             # 데이터 매핑 인터페이스   
-　　　│  └─ /service            # 비즈니스 로직 처리 클래스   
-　　　└─ /resources             # 리소스 파일   
-　　　　├─ /mapper             # MyBatis 매퍼 XML 파일   
-　　　　└─ /templates          # Thymeleaf HTML 템플릿 파일   
-　└─ README.md                    # 프로젝트 소개   
+／root-directory  
+├── app／planmate　　　　　　＃ 프론트엔드 소스코드  
+│　　├── public　　　　　　　＃ 로고 및 아이콘 파일 저장  
+│　　└── src　　　　　　　　＃ 프론트엔드 JavaScript 소스코드  
+│　　　　├── components　　　＃ 공통 UI 컴포넌트（헤더）관련 JavaScript 소스코드  
+│　　　　└── pages　　　　　＃ 각 페이지 별 JavaScript 소스코드（로그인，강의 조회 등）  
+├── artifacts　　　　　　　＃ 프로젝트 문서（요구사항 분석 명세서 등）  
+├── classroom　　　　　　　　　＃ Requirements 프레젠테이션 파일   
+├── gradle／wrapper　　　　＃ Gradle 빌드 도구 설정 파일   
+├── proposal　　　　　　　　　＃ SOW    
+├── reports　　　　　　　　　＃ 최종 프레젠테이션 파일      
+├── server　　　　　　　　＃ API 명세서 파일 저장  
+├── src　　　　　　　　　　＃ 백엔드 소스코드  
+│　　└── main　　　　　　　＃ 메인 소스 디렉토리  
+│　　　　├── java／com／example／SeProject　＃ Java 패키지 디렉토리  
+│　　　　│　　├── controller　＃ 컨트롤러 클래스  
+│　　　　│　　├── domain　　　＃ 데이터베이스 엔터티 및 도메인 클래스  
+│　　　　│　　├── dto　　　　＃ 데이터 전송 객체（DTO）클래스  
+│　　　　│　　├── mapper　　　＃ 데이터 매핑 인터페이스  
+│　　　　│　　└── service　　　＃ 비즈니스 로직 처리 클래스  
+│　　　　└── resources　　　　＃ 리소스 파일  
+│　　　　　　├── mapper　　　　＃ MyBatis 매퍼 XML 파일  
+│　　　　　　└── templates　　＃ Thymeleaf HTML 템플릿 파일  
+└── README．md　　　　　　　＃ 프로젝트 소개  
+
+
 
 ## Project Team Members (w/roles)
 
