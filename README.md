@@ -92,6 +92,73 @@ Project Scope: 서울시립대학교 컴퓨터과학부 2024년 소프트웨어�
 
 #### Back-end
 
+백엔드의 코드는 /src 폴더에 위치해 있다. Spring Boot와 MyBatis를 사용하여 RESTful API를 구현하였다. 
+각 기능은 관련된 Mapper와 Service Layer를 통해 데이터베이스와의 상호작용을 처리하며, 클라이언트의 요청에 따라 필요한 데이터를 효율적으로 조회하고 반환한다. MVC 아키텍처에 Service Layer를 추가하여 유지보수와 확장에 용이하다.
+
+#####  Library 및 Framework
+- __String Boot__: 웹 애플리케이션의 기본 프레임워크로 사용된다. RESTful API를 신속하게 개발할 수 있도록 돕는다. 
+- __MyBatis__: SQL쿼리를 매핑하여 데이터베이스와의 상호작용을 간편하게 처리한다.
+- __Thymeleaf__: 서버 사이드 템플릿 엔진으로, HTML 파일을 동적으로 생성하는 데 사용된다.
+- __Lombok__: Getter, Setter 등을 자동으로 생성하여 코드의 가독성을 높인다다. 
+- __Servlet__: HTTP 요청을 처리하고, 세션 관리를 위해 사용된다.
+- __JUnit__: 단위 테스트를 위해 사용된다.
+
+##### 주요 클래스 및 메소드
+- __Controller__
+    - `SignUpController.java`: 회원가입 처리를 위한 API를 제공한다.
+        - signUp(): 학생으로부터 회원가입 정보를 받아, SignUpService를 호출하여 새로운 학생을 데이터베이스에 등록한다. 입력 검증 후, 성공 여부에 따라 적절한 응답을 반환한다.
+    - `LoginController.java`: 세션을 이용하여 로그인 기능을 제공한다.
+        - logIn(): 학생으로부터 로그인 정보를 받아, LoginService를 호출하여 세션을 생성하고 인증 과정을 수행한다. 로그인 성공 시 학생 정보를 세션에 저장하고, 실패 시 오류 메시지를 반환한다.
+    - `LogoutController.java`: 로그아웃 기능을 제공한다. 
+        - logOut(): 활성화된 세션을 무효화하여 로그아웃 처리한다.
+    - `SessionController.java`: 세션 상태 확인을 위한 API를 제공한다.
+        - checkSession(): 학생의 세션 상태를 확인하고, 세션이 유효하면 정보를 반환한다.
+    - `StudentController.java`: 학생 정보와 관련된 API를 제공한다.
+        - getAllStudents(): StudentService를 호출하여 데이터베이스에서 모든 학생 정보를 조회하고, 이를 학생에게 반환한다.
+        - deleteStudent(): ID를 통해 특정 학생의 정보를 삭제한다. 삭제 성공 여부에 따라 응답을 반환한다.
+    - `DepartmnetController.java`: 학과와 관련된 API를 제공한다.
+        - getAllDepartment(): DepartmentService를 호출하여 데이터베이스에 있는 모든 학과 정보를 조회하고, 이를 학생에게 반환합니다.
+    - `MainPageController.java`: 강의 검색 및 시간표와 관련된 API를 제공한다.
+        - searchCourseList(): 학생으로부터 검색 조건을 받아 CourseSearchService를 호출하여 강의 목록을 검색한다.
+        - updateTimetable(): 학생의 시간표를 업데이트하는 로직을 처리한다.
+        - addCourseToTimetable(): 시간표에 특정 과목을 추가하는 로직을 처리한다..
+    - `PrePostCourseeController`: 선수/후수 과목 정보를 조회하는 API를 제공한다.
+        - getPrePostCourseList(): 특정 학과를 기반으로 선수/후수 과목 목록을 조회하여 학생에게 반환한다. PrePostCourseService를 호출하여 데이터를 처리한다.
+    - `StudentReportController`: 학생 성적표 조회와 관련된 API를 제공한다.
+        - studentReport(): studentCode를 통해 학생의 성적 정보를 반환한다.
+
+- __Service__
+    - `SignUpService.java`: 회원가입 비즈니스 로직을 처리한다. 
+        - signUp(StudentSignUpDto studentSignUpDto): checkDuplicateId()를 통해 아이디 중복 여부를 확인하고, generateStudentCode()로 학번을 생성한 후 데이터베이스에 정보를 저장한다. 
+        - generateStudentCode(): 임의로 학번을 지정한다. 학번은 900001부터 1씩 증가한다. 
+    - `LoginService.java`: 로그인 비즈니스 로직을 처리한다.
+        - logIn(String id, String pw): 입력된 아이디와 비밀번호를 검증하고, 성공 시 세션을 생성하여 학생 정보를 반환한다.
+        - isLoggedIn(String id, String pw): 입력된 아이디와 비밀번호로 로그인 성공 여부를 확인한다.
+    - `StudentService.java`: 학생 정보 조회/삭제 비즈니스 로직을 처리한다.
+        - getAllStudents(): 데이터베이스에서 모든 학생 정보를 조회하여 반환한다. 
+        - deleteStudent(String id): id를 통해 특정 학생 정보를 데이터베이스에서 삭제한다.
+    - `DepartmentService.java`: 학과 정보 조회 비즈니스 로직을 처리한다.
+        - getAllDepartments(): 데이터베이스에 있는 모든 학과 정보를 조회하여 반환한다. 
+    - `CourseSearchServcie.java`: 강의 검색 및 필터링 비즈니스 로직을 처리한다.
+        - searchCourseList(CourseSearchCriteria criteria): 학생의 검색 기준을 받아 강의 목록을 검색하고 반환한다. 
+        - isOverlapping(StudentScheduleDto course1, CourseDto course2): 두 과목의 시간표를 비교하여 겹침 여부를 판단한다. 
+    - `PrePostCourseService.java`: 선수/후수 과목 조회 비즈니스 로직을 처리한다.
+        - getPrePostCourseList(String departmentName): 주어진 학과 이름을 기반으로 해당 학과의 선수/후수 과목을 조회하여 반환한다.
+    - `TimetableService.java`: 시간표를 관리하는는 비즈니스 로직을 처리합니다. 
+        - updateTimetable(String studentCode): 학번을 통해 특정 학생의 시간표를 조회하여 반환한다..
+        - addCourseToTimetable(TimetableEntry entry): 과목을 학생의 시간표에 추가합니다.
+        - isOverlapping(StudentScheduleDto course1, CourseDto course2): 추가하려는 과목과 기존 시간표의 과목이 겹치는지 확인한다. 
+
+- __Domain__: Domain 파일은 데이터베이스 테이블과 매핑되는 주요 비즈니스 엔티티를 정의하며, 각 클래스는 속성과 관련된 비즈니스 로직을 포함한다.
+
+- __DTO(Data Transfer Object)__: DTO 파일은 클라이언트와 서버 간의 데이터 전송을 위한 객체로, 필요한 데이터만 포함하여 API 요청 및 응답 시 사용된다.
+
+- __Mapper__
+    - Mapper xml: MyBatis 프레임워크를 사용하여 SQL 쿼리를 실행하고, DTO와 매핑하여 결과를 반환합니다. 각 Mapper Interface 파일에 대응하는 XML파일이 존재한다.
+    - Mapper Interface: 데이터베이스와의 상호작용을 위한 메소드를 정의하며, XML에 정의된 SQL 쿼리를 호출하여 필요한 데이터를 조회/수정한다.
+
+
+
 <br/>
 
 ### Test Case and Result
