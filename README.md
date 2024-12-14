@@ -6,11 +6,35 @@
 
 2024년 2학기
 
-## Highlighted features
+## Highlighted Features
+1. **회원가입**
+2. **로그인/로그아웃**
+3. **강의 조회**
+   - 검색어 입력
+   - 학부/과, 교과구분, 학년, 요일, 시간 선택
+   - 공학인증 과목만 보기
+   - 재수강 가능 과목만 보기
+   - 수강 금지 과목 제외
+   - 시간이 겹치는 과목 제외
+   - 과목 시간표에 담기
+4. **선수/후수 과목 조회**
+   - 학부/과 선택
+   - 선수/후수 데이터 표출
+5. **나의 성적표 조회**
+   - 나의 성적 등록
+   - 전체 평점, 취득 학점, 전공 평점, 전공 학점, 교양 학점 표출
+- [Demo Video (Playable)](./artifacts/Demo%20Video.mp4)
 
 ## Project Constraints
+본 서비스의 제약사항은 다음과 같다.
 
-## High Level Architecture
+보안 및 학사규정 등의 이유로 수강신청 기능 그 자체를 구현하지는 않았다. 본 서비스는 사용자가 수강신청을 계획하고 준비하는 과정에서의 어려움을 해결하는데 그 중점을 둔다. 이에 사용되는 학사 DB는 서울시립대학교 대학행정정보시스템이 제공하는 강좌 정보를 바탕으로 구성하였다.   
+서울시립대학교 대학행정정보시스템이 자체적으로 제공하고 있는 기능은 구현하지 않았다. 그 예시로는 졸업요건을 충족하기 위해 수강해야 하는 영역별 학점 수를 조회하는 기능 등이 있다. 본 서비스는 대학행정정보시스템에 구현되어 있지 않으나, 사용자의 수강신청에의 편의를 위해 필요한 기능에 초점을 맞춘다. 또한 구현의 난도와 주어진 개발 기간을 고려하여, 학생의 시간표를 가시적으로 표출하는 기능을 구현하지 않았다.
+
+## High-Level Architecture
+<!--프로젝트의 주요 아키텍처 설명과 그림을 포함합니다.-->
+
+![Architecture Diagram](./artifacts/HighLevel_Architecture.png)
 
 ## Technology stacks
 
@@ -54,6 +78,28 @@
 ### Test Case and Result
 
 ## Repository Structure
+/root-directory   
+　　└ /app/planmate 　　　　　# 프론트엔드 소스코드   
+　　　　└ /public 　　　　　　　# 로고 및 아이콘 파일 저장   
+　　　　　　└ /src 　　　　　　　# 프론트엔드 JavaScript 소스코드   
+　　　　　　　　└ /components 　　# 공통 UI 컴포넌트(헤더) 관련 JavaScript 소스코드   
+　　　　　　　　└ /pages 　　　　　# 각 페이지 별 JavaScript 소스코드(로그인, 강의 조회 등)   
+　　└ /artifacts 　　　　　　　　# 프로젝트 문서(요구사항 분석서 등)   
+　　└ /build 　　　　　　　　　　# 빌드된 배포 파일   
+　　└ /gradle/wrapper 　　　　# Gradle 빌드 도구 설정 파일   
+　　└ /server 　　　　　　　　　# API 명세서 파일 저장   
+　　└ /src　　　　　　　　　　　# 백엔드 소스코드   
+　　　　└ /main 　　　　　　　　　# 메인 소스 디렉토리   
+　　　　　　└ /java/com/example/SeProject 　# Java 패키지 디렉토리   
+　　　　　　　　└ /controller 　　　　# 컨트롤러 클래스   
+　　　　　　　　└ /domain 　　　　　　#    
+　　　　　　　　└ /dto 　　　　　　　　# 데이터 전송 객체(DTO) 클래스   
+　　　　　　　　└ /mapper 　　　　　　#    
+　　　　　　　　└ /service 　　　　　　#    
+　　　　　　└ /resources 　　　　　　#    
+　　　　　　　　└ /mapper 　　　　　　# MyBatis 매퍼 XML 파일   
+　　　　　　　　└ /templates 　　　　　#    
+└ README.md　　　　　　　　　　　　# 프로젝트 소개  
 
 ## Project Team Members (w/roles)
 
