@@ -1,7 +1,7 @@
 # Planmate
 
 ## Proejct Scope
-Project Scope: 서울시립대학교 컴퓨터과학부 2024년 소프트웨어공학 프로젝트로, Software Development Life-Cycle 을 기반으로 객체지향 소프트웨어공학 방법론을 적용하여 <<수강신청 도우미>> 개발   
+Project Scope: 서울시립대학교 컴퓨터과학부 2024년 소프트웨어공학 프로젝트로, Software Development Life-Cycle 을 기반으로 객체지향 소프트웨어공학 방법론을 적용하여 **수강신청 도우미** 개발   
 
 ## Project Duration
 
